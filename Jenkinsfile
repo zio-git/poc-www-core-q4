@@ -8,11 +8,5 @@ pipeline {
       }
     }
 
-    stage('Fetch code') {
-      steps {
-        git(url: 'https://github.com/HISMalawi/BHT-EMR-API.git', branch: 'development', changelog: true, poll: true, credentialsId: 'none')
-      }
-    }
-
   }
 }
