@@ -23,6 +23,7 @@ pipeline {
     stage('Load metadata') {
       steps {
         echo 'Loading metadata and regimen scripts'
+        sh './bin/update_art_metadata.sh'
       }
     }
 
