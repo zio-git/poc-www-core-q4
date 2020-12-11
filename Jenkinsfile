@@ -14,5 +14,11 @@ pipeline {
       }
     }
 
+    stage('Migration') {
+      steps {
+        echo 'Run migrations'
+      }
+    }
+
   }
 }
