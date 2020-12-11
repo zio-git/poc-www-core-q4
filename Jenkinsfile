@@ -20,5 +20,11 @@ pipeline {
       }
     }
 
+    stage('Load metadata') {
+      steps {
+        echo 'Loading metadata and regimen scripts'
+      }
+    }
+
   }
 }
