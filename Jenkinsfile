@@ -14,5 +14,11 @@ pipeline {
       }
     }
 
+    stage('Migration') {
+      steps {
+        sh './bin/rails db:migrate'
+      }
+    }
+
   }
 }
