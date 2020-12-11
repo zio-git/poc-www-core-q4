@@ -10,7 +10,7 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        git(url: 'https://github.com/HISMalawi/BHT-EMR-API.git', branch: 'master', changelog: true, poll: true)
+        git(url: 'https://github.com/HISMalawi/BHT-EMR-API.git', branch: 'development', changelog: true, poll: true, credentialsId: 'none')
       }
     }
 
