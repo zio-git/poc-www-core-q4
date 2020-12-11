@@ -10,7 +10,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('Frontend') {
           steps {
             git(url: 'https://github.com/HISMalawi/BHT-Core.git', branch: 'development', changelog: true, poll: true)
           }
