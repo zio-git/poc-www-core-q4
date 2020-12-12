@@ -8,21 +8,9 @@ pipeline {
       }
     }
 
-    stage('Checkout') {
+    stage('Build') {
       steps {
-        dir(path: '/var/www/BHT-EMR-API')
-      }
-    }
-
-    stage('Migration') {
-      steps {
-        echo 'Run migrations'
-      }
-    }
-
-    stage('Load metadata and reload the application') {
-      steps {
-        sh './bin/update_art_metadata.sh'
+        echo 'Setting up POC Backend'
       }
     }
 
