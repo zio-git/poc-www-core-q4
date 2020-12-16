@@ -8,13 +8,30 @@ pipeline {
     }
 
     stage('Fetching API') {
-      steps {
-        echo 'Starting to fetch API from GitHub'
-        echo 'Checking if BHT-EMR-API exists.'
-        sh '[ -d "BHT-EMR-API" ] && echo "API already cloned." || git clone https://github.com/HISMalawi/BHT-EMR-API.git'
-        echo 'Change directory to BHT-EMR-API'
-        sh 'cd $WORKSPACE/BHT-EMR-API && git pull origin development'
-        echo 'All changes up-to-date. Ready to ship to sites.'
+      parallel {
+        stage('Fetching API') {
+          steps {
+            echo 'Starting to fetch API from GitHub'
+            echo 'Checking if BHT-EMR-API exists.'
+            sh '[ -d "BHT-EMR-API" ] && echo "API already cloned." || git clone https://github.com/HISMalawi/BHT-EMR-API.git'
+            echo 'Change directory to BHT-EMR-API'
+            sh 'cd $WORKSPACE/BHT-EMR-API && git pull origin development'
+            echo 'All changes up-to-date. Ready to ship to sites.'
+          }
+        }
+
+        stage('Fetching BHTx') {
+          steps {
+            echo 'Starting to fetch Core'
+          }
+        }
+
+        stage('Fetching ART') {
+          steps {
+            echo 'Starting to fetch ARTx'
+          }
+        }
+
       }
     }
 
