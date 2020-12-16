@@ -7,7 +7,7 @@ pipeline {
       }
     }
 
-    stage('Fetching repos') {
+    stage('Fetching Repos') {
       parallel {
         stage('Fetching API') {
           steps {
@@ -59,7 +59,6 @@ pipeline {
 
     stage('Shipping') {
       parallel {
-
         stage('Shipping API') {
           steps {
             echo 'Starting to ship API'
@@ -78,6 +77,12 @@ pipeline {
           }
         }
 
+      }
+    }
+
+    stage('Setup App') {
+      steps {
+        echo 'Starting to setup App'
       }
     }
 
