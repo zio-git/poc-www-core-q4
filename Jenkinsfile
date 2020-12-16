@@ -6,9 +6,12 @@ pipeline {
         echo 'Cloning API'
         sh '''dir="BHT-EMR-API"
 rm -r $dir'''
-        sh '''git fetch --tags https://github.com/HISMalawi/BHT-EMR-API.git 
-latesttag=$(git describe --tags)
+        sh '''latesttag=$(git describe --tags)
+repo1= "https://github.com/HISMalawi/BHT-EMR-API.git"
+git pull origin development "$repo1"
 git checkout ${latesttag}
+
+
     
     '''
       }
