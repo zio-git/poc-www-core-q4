@@ -4,8 +4,7 @@ pipeline {
     stage('Clone API') {
       steps {
         echo 'Cloning API'
-        sh '''dir="BHT-EMR-API"
-rm -r $dir'''
+        sh '[ -e $dir ] && rm -r $dir'
         sh '''latesttag=$(git describe --tags)
 repo1= "https://github.com/HISMalawi/BHT-EMR-API.git"
 git pull origin development "$repo1"
