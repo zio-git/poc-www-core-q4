@@ -1,29 +1,21 @@
 pipeline {
   agent any
   stages {
-    stage('Clone API') {
+    stage('Initializing') {
       steps {
-        echo 'Cloning API'
-        sh '[ -e $dir ] && rm -r $dir'
-        sh '''latesttag=$(git describe --tags)
-repo1= "https://github.com/HISMalawi/BHT-EMR-API.git"
-git pull origin development "$repo1"
-git checkout ${latesttag}
-
-
-    
-    '''
+        echo 'Initializing ...'
       }
     }
 
-    stage('Clone Core') {
+    stage('Fetch API') {
       steps {
-        echo 'Cloning BHT-Core'
-        sh 'mkdir BHT-Core'
+        echo 'Starting to fetch API from GitHub repo'
+        echo 'Clean up'
+        sh '[ -d "BHT-EMR-API" ] && echo rm -r BHT-EMR-API || echo "No API directory found. Proceeding with installation."'
       }
     }
 
-    stage('Clone ART') {
+    stage('Fetch Core') {
       steps {
         echo 'Cloning ART'
       }
