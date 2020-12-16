@@ -5,9 +5,7 @@ pipeline {
       steps {
         echo 'Cloning API'
         sh '''dir="BHT-EMR-API"
-if [-d $dir]
-   then
-     rm -r $dir'''
+rm -r $dir'''
         sh '''git clone https://github.com/HISMalawi/BHT-EMR-API.git 
 git fetch --tags https://github.com/HISMalawi/BHT-EMR-API.git 
   latesttag=$(git describe --tags)
