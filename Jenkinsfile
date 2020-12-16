@@ -5,8 +5,9 @@ pipeline {
       steps {
         echo 'Cloning API'
         sh '''mkdir BHT-EMR-API
+cd BHT-EMR-API
+git clone https://github.com/HISMalawi/BHT-EMR-API.git
 '''
-        git(url: 'https://github.com/HISMalawi/BHT-EMR-API.git', changelog: true, poll: true)
       }
     }
 
