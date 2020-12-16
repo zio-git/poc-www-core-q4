@@ -33,9 +33,9 @@ pipeline {
       steps {
         echo 'Starting to fetch ART from GitHub'
         echo 'Checking if BHT-Core-Apps-ART exists.'
-        sh '[ -d "BHT-Core/apps/ART" ] && echo "ART already cloned." || mkdir apps; cd $WORKSPACE/BHT-Core/apps; mkdir ART; cd $WORKSPACE/BHT-Core/apps/ART; git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git .'
+        sh '[ -d "BHT-Core-Apps-ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git'
         echo 'Change directory to ART'
-        sh 'cd $WORKSPACE/BHT-Core/apps/ART && git pull origin development'
+        sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git pull origin development'
         echo 'All changes up-to-date. Ready to ship to sites.'
       }
     }
