@@ -27,7 +27,7 @@ for site in xi_api['cluster']:
 		os.system(push_core)
 		
 		# PUSH ART
-		push_art = "rsync " + "-avzhe ssh $WORKSPACE/BHT-Core/apps/ART/ " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-Core/apps/ART"
+		push_art = "rsync " + "-avzhe ssh $WORKSPACE/BHT-Core-Apps-ART/ " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-Core/apps/ART"
 		os.system(push_art)
 		
 
