@@ -44,7 +44,7 @@ pipeline {
 
       }
     }
-    
+
     stage('Building App') {
       steps {
         echo 'Starting to build the App'
