@@ -4,13 +4,16 @@ pipeline {
     stage('Clone API') {
       steps {
         echo 'Cloning API'
-        sh 'mkdir API'
+        sh '''mkdir BHT-EMR-API
+'''
+        git(url: 'https://github.com/HISMalawi/BHT-EMR-API.git', changelog: true, poll: true)
       }
     }
 
     stage('Clone Core') {
       steps {
-        echo 'Setting up POC Backend'
+        echo 'Cloning BHT-Core'
+        sh 'mkdir BHT-Core'
       }
     }
 
