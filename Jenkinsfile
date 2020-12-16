@@ -4,8 +4,11 @@ pipeline {
     stage('Clone API') {
       steps {
         echo 'Cloning API'
-        sh '''git clone https://github.com/HISMalawi/BHT-EMR-API.git .
-'''
+        sh '''git clone https://github.com/HISMalawi/BHT-EMR-API.git 
+  latesttag=$(git describe --tags)
+     git checkout ${latesttag}
+    
+    '''
       }
     }
 
