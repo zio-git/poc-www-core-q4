@@ -10,6 +10,10 @@ git fetch --tags https://github.com/HISMalawi/BHT-EMR-API.git
      git checkout ${latesttag}
     
     '''
+        sh '''dir="BHT-EMR-API"
+if [-d $dir]
+   then
+     rm -r $dir'''
       }
     }
 
