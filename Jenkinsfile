@@ -7,7 +7,7 @@ pipeline {
       }
     }
 
-    stage('Fetching API') {
+    stage('Fetching repos') {
       parallel {
         stage('Fetching API') {
           steps {
