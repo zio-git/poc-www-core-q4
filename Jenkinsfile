@@ -12,7 +12,7 @@ pipeline {
         echo 'Starting to fetch API from GitHub repo'
         echo 'Clean up'
         sh '[ -d "BHT-EMR-API" ] && echo "API already cloned." || git clone https://github.com/HISMalawi/BHT-EMR-API.git'
-        sh '''git pull origin development
+        sh '''git pull origin development https://github.com/HISMalawi/BHT-EMR-API.git
 '''
       }
     }
