@@ -59,25 +59,20 @@ pipeline {
 
     stage('Shipping') {
       parallel {
-        stage('Shipping') {
-          steps {
-            echo 'Starting to ship to sites'
-          }
-        }
 
-        stage('Ship API') {
+        stage('Shipping API') {
           steps {
             echo 'Starting to ship API'
           }
         }
 
-        stage('Ship Core') {
+        stage('Shipping Core') {
           steps {
             echo 'Starting to ship Core'
           }
         }
 
-        stage('Ship ART') {
+        stage('Shipping ART') {
           steps {
             echo 'Starting to ship ART'
           }
