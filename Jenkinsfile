@@ -39,19 +39,19 @@ pipeline {
         echo 'All changes up-to-date. Ready to ship to sites.'
       }
     }
-    
+
     stage('Building App') {
       steps {
         echo 'Starting to build the App'
       }
     }
-    
+
     stage('Testing') {
       steps {
         echo 'No testing functionality found'
       }
     }
-    
+
     stage('Shipping') {
       steps {
         echo 'Starting to ship to sites'
