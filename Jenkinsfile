@@ -7,15 +7,15 @@ pipeline {
       }
     }
 
-    stage('Fetch API') {
+    stage('Fetching API') {
       steps {
         echo 'Starting to fetch API from GitHub repo'
         echo 'Clean up'
-        sh '[ -d "BHT-EMR-API" ] && echo rm -r BHT-EMR-API || echo "No API directory found. Proceeding with installation."'
+        sh '[ -d "BHT-EMR-API" ] && echo rm -r BHT-EMR-API || echo "No API directory found. Proceeding to fetch repository."'
       }
     }
 
-    stage('Fetch Core') {
+    stage('Fetching Core') {
       steps {
         echo 'Cloning ART'
       }
