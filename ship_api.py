@@ -31,7 +31,7 @@ for site in xi_api['cluster']:
 		os.system(migrations)
 
 		# METADATA	
-		api_metadata = "ssh " + site['user'] + "@" + site['ip'] + " './$WORKSPACE/BHT-EMR-API/bin/update_art_metadata.sh development'"
+		api_metadata = "ssh " + site['user'] + "@" + site['ip'] + " 'sh ~/var/www/BHT-EMR-API/bin/update_art_metadata.sh development'"
 		os.system(api_metadata)
 
 		with urllib.request.urlopen('http://10.44.0.52/modules/api/?v=record_sites_deployed&result=1&pipeline_name=Xi-Build-Initiator&sid='+site['id']) as response:
