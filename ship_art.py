@@ -23,8 +23,8 @@ for site in xi_api['cluster']:
 		os.system(push_art)	
 
 		# SETUP ART
-		setup_art = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-Core/apps/ART; git checkout tags/v4.10.11'"
-		os.system(setup_art)		
+		checkout_art = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-Core/apps/ART; git checkout tags/'" + site['art_tag']
+		os.system(checkout_art)		
 
 		with urllib.request.urlopen('http://10.44.0.52/modules/api/?v=record_sites_deployed&result=1&pipeline_name=Xi-Build-Initiator&sid='+site['id']) as response:
 			html = response.read()

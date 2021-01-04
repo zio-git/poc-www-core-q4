@@ -22,17 +22,9 @@ for site in xi_api['cluster']:
 		push_api = "rsync " + "-avzhe --exclude 'config' ssh $WORKSPACE/BHT-EMR-API/ " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-EMR-API"
 		os.system(push_api)
 
-		# CHECKOUT SPECIFIED VERSION
-		checkout_api = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; git checkout tags/v4.10.18'"
+		# CHECKOUT SPECIFIED TAG
+		checkout_api = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; git checkout tags/'" + site['api_tag']
 		os.system(checkout_api)
-
-		# MIGRATIONS
-		migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'rails db:migrate'"
-		os.system(migrations)
-
-		# METADATA	
-		api_metadata = "ssh " + site['user'] + "@" + site['ip'] + " 'sh ~/var/www/BHT-EMR-API/bin/update_art_metadata.sh development'"
-		os.system(api_metadata)
 
 		with urllib.request.urlopen('http://10.44.0.52/modules/api/?v=record_sites_deployed&result=1&pipeline_name=Xi-Build-Initiator&sid='+site['id']) as response:
 			html = response.read()
