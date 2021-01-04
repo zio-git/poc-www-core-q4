@@ -19,7 +19,7 @@ for site in xi_api['cluster']:
 	if subprocess.call(['ping', param, '1', site['ip']]) == 0:
 
 		# PUSH BHT-EMR-API
-		push_api = "rsync " + "-avzhe --exclude 'config' ssh $WORKSPACE/BHT-EMR-API/ " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-EMR-API"
+		push_api = "rsync " + "-avzhe ssh $WORKSPACE/BHT-EMR-API/ " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-EMR-API"
 		os.system(push_api)
 
 		# CHECKOUT SPECIFIED TAG
