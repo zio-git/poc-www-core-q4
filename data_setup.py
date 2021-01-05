@@ -32,7 +32,7 @@ for site in xi_api['cluster']:
 		os.system(db_import_4)
 
 
-		migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; rake db:migrate'"
+		migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API && rake db:migrate'"
 		os.system(migrations)
 
 
