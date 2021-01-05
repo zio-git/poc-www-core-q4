@@ -86,6 +86,7 @@ pipeline {
     stage('Setup App') {
       steps {
         echo 'Starting to setup App'
+        sh 'python3 data_setup.py'
       }
     }
 
