@@ -19,7 +19,7 @@ for site in xi_api['cluster']:
 	if subprocess.call(['ping', param, '1', site['ip']]) == 0:
 
 		# PUSH CORE
-		push_core = "rsync " + "--exclude 'config' -avzhe ssh $WORKSPACE/BHT-Core/ " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-Core"
+		push_core = "rsync " + "-avzhe ssh $WORKSPACE/BHT-Core/ " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-Core"
 		os.system(push_core)
 
 		# SETUP CORE
