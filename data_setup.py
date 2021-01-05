@@ -19,20 +19,20 @@ for site in xi_api['cluster']:
 	if subprocess.call(['ping', param, '1', site['ip']]) == 0:
 
 		# PUSH CORE
-		db_import_1 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd $WORKSPACE/BHT-EMR-API; mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f'"
+		db_import_1 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f'"
 		os.system(db_import_1)	
 
-		db_import_2 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd $WORKSPACE/BHT-EMR-API; mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f'"
+		db_import_2 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f'"
 		os.system(db_import_2)
 
-		db_import_3 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd $WORKSPACE/BHT-EMR-API; mysql -uroot -proot openmrs < moh_regimens_v2020.sql -v -f'"
+		db_import_3 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f'"
 		os.system(db_import_3)
 
-		db_import_4 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd $WORKSPACE/BHT-EMR-API; mysql -uroot -proot openmrs < bart2_views_schema_additions.sql -v -f'"
+		db_import_4 = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f'"
 		os.system(db_import_4)
 
 
-		migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'cd $WORKSPACE/BHT-EMR-API; rake db:migrate'"
+		migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; rake db:migrate'"
 		os.system(migrations)
 
 
