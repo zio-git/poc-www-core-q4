@@ -22,7 +22,10 @@ for site in xi_api['cluster']:
 		db_import = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f; mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f; mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f; db/sql/bart2_views_schema_additions.sql -v -f'"
 		os.system(db_import)
 
-		migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API && rake db:migrate'"
+		# migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API && rake db:migrate'"
+		# os.system(migrations)
+
+		migrations = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API && pwd'"
 		os.system(migrations)
 
 
