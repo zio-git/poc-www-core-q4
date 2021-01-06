@@ -87,6 +87,7 @@ pipeline {
       steps {
         echo 'Starting to setup App'
         sh 'python3 data_setup.py'
+        sh 'python3 start_migrations.py'
       }
     }
 
