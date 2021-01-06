@@ -25,6 +25,9 @@ for site in xi_api['cluster']:
 		push_routes = "rsync " + "-avzhe ssh $WORKSPACE/BHT-EMR-API/config/routes.rb " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-EMR-API/config/"
 		os.system(push_routes) 
 
+		push_migrations_script = "rsync " + "-avzhe ssh $WORKSPACE/migrations.sh " + site['user'] + "@" + site['ip'] + ":~/var/www/BHT-EMR-API/"
+		os.system(push_migrations_script) 
+
 		# CHECKOUT SPECIFIED TAG
 		checkout_api = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; git checkout tags/'" + site['api_tag']
 		os.system(checkout_api)
