@@ -29,7 +29,7 @@ for site in xi_api['cluster']:
 		os.system(push_migrations_script) 
 
 		# CHECKOUT SPECIFIED TAG
-		checkout_api = "ssh " + site['user'] + "@" + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; git checkout tags/'" + site['api_tag']
+		checkout_api = "ssh -o MACs=hmac-sha1 -l " + site['user'] + " " + site['ip'] + " 'cd ~/var/www/BHT-EMR-API; git checkout tags/'" + site['api_tag']
 		os.system(checkout_api)
 
 		with urllib.request.urlopen('http://10.44.0.52/modules/api/?v=record_sites_deployed&result=1&pipeline_name=Xi-Build-Initiator&sid='+site['id']) as response:
