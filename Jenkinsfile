@@ -4,6 +4,7 @@ pipeline {
     stage('Initializing') {
       steps {
         echo 'Initializing ...'
+        sh 'Working from $WORKSPACE'
       }
     }
 
