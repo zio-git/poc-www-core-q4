@@ -20,7 +20,7 @@ pipeline {
             echo 'Fetching Tags'
             sh 'cd $WORKSPACE/BHT-EMR-API && git fetch --tags -f'
             echo 'Checking out to Latest Tag'
-            sh 'cd $WORKSPACE/BHT-EMR-API && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout $latesttag'
+            sh 'cd $WORKSPACE/BHT-EMR-API && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout ${latesttag}'
             sh 'cd $WORKSPACE/BHT-EMR-API && git describe > HEAD'
           }
         }
@@ -35,7 +35,7 @@ pipeline {
             echo 'Fetching New Tags'
             sh 'cd $WORKSPACE/BHT-Core && git fetch --tags -f'
             echo 'Checking out to latest tag'
-            sh 'cd $WORKSPACE/BHT-Core && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout $latesttag'
+            sh 'cd $WORKSPACE/BHT-Core && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout ${latesttag}'
             sh 'cd $WORKSPACE/BHT-Core && git describe > HEAD'
           }
         }
@@ -50,7 +50,7 @@ pipeline {
             echo 'Fetching new tags'
             sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git fetch --tags -f'
             echo 'Checking out to latest tag'
-            sh 'cd $WORKSPACE/BHT-Core-Apps-ART && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout $latesttag'
+            sh 'cd $WORKSPACE/BHT-Core-Apps-ART && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout ${latesttag}'
             sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git describe > HEAD'
           }
         }
