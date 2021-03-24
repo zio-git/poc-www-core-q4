@@ -17,7 +17,11 @@ pipeline {
             sh '[ -d "BHT-EMR-API" ] && echo "API already cloned." || git clone https://github.com/HISMalawi/BHT-EMR-API.git'
             echo 'Change directory to BHT-EMR-API'
             sh 'cd $WORKSPACE/BHT-EMR-API && git pull origin development'
-            echo 'All changes up-to-date. Ready to ship to sites.'
+            echo 'Fetching Tags'
+            sh 'cd $WORKSPACE/BHT-EMR-API && git fetch --tags -f'
+            echo 'Checking out to Latest Tag'
+            sh 'cd $WORKSPACE/BHT-EMR-API && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout $latesttag'
+            sh 'cd $WORKSPACE/BHT-EMR-API && git describe > HEAD'
           }
         }
 
