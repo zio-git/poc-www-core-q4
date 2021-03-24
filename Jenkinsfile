@@ -35,7 +35,9 @@ pipeline {
             echo 'Fetching New Tags'
             sh 'cd $WORKSPACE/BHT-Core && git fetch --tags -f'
             echo 'Checking out to latest tag'
-            sh 'cd $WORKSPACE/BHT-Core && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout ${latesttag}'
+            sh '''cd $WORKSPACE/BHT-Core && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+
+cd $WORKSPACE/BHT-Core && git checkout ${latesttag}'''
             sh 'cd $WORKSPACE/BHT-Core && git describe > HEAD'
           }
         }
