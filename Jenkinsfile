@@ -63,21 +63,21 @@ pipeline {
         stage('Shipping API') {
           steps {
             echo 'Starting to ship API'
-            sh 'python3 ship_api.py'
+            sh '#python3 ship_api.py'
           }
         }
 
         stage('Shipping Core') {
           steps {
             echo 'Starting to ship Core'
-            sh 'python3 ship_core.py'
+            sh '#python3 ship_core.py'
           }
         }
 
         stage('Shipping ART') {
           steps {
             echo 'Starting to ship ART'
-            sh 'python3 ship_art.py'
+            sh '#python3 ship_art.py'
           }
         }
 
@@ -87,7 +87,7 @@ pipeline {
     stage('Setup App') {
       steps {
         echo 'Starting to setup App'
-        sh 'python3 data_setup.py'
+        sh '#python3 data_setup.py'
       }
     }
 
