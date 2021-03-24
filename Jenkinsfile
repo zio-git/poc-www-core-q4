@@ -32,7 +32,11 @@ pipeline {
             sh '[ -d "BHT-Core" ] && echo "Core already cloned." || git clone https://github.com/HISMalawi/BHT-Core.git'
             echo 'Change directory to BHT-Core'
             sh 'cd $WORKSPACE/BHT-Core && git pull origin development'
-            echo 'All changes up-to-date. Ready to ship to sites.'
+            echo 'Fetching New Tags'
+            sh 'cd $WORKSPACE/BHT-Core && git fetch --tags -f'
+            echo 'Checking out to latest tag'
+            sh 'cd $WORKSPACE/BHT-Core && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout $latesttag'
+            sh 'cd $WORKSPACE/BHT-Core && git describe > HEAD'
           }
         }
 
@@ -43,7 +47,11 @@ pipeline {
             sh '[ -d "BHT-Core-Apps-ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git'
             echo 'Change directory to ART'
             sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git pull origin development'
-            echo 'All changes up-to-date. Ready to ship to sites.'
+            echo 'Fetching new tags'
+            sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git fetch --tags -f'
+            echo 'Checking out to latest tag'
+            sh 'cd $WORKSPACE/BHT-Core_Apps-ART && latestTag=$(git describe --tags `git rev-list --tags --max-count=1`) && git checkout $latesttag'
+            sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git describe > HEAD'
           }
         }
 
