@@ -65,8 +65,9 @@ pipeline {
             sh '''#Opsuser
 #BHT-EMR-API
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-EMR-API\'
-#ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git checkout v4.10.24\'
-rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-EMR-API'''
+
+rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-EMR-API
+ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git checkout v4.10.24\''''
           }
         }
 
@@ -75,7 +76,9 @@ rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.44.0.52:/home/op
             sh '''#Opsuser
 #BHT-Core
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core\'
-#ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git checkout v4.7.7\''''
+
+rsync -a --exclude \'config\' $WORKSPACE/BHT-Core opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core
+ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git checkout v4.7.7\''''
           }
         }
 
@@ -84,7 +87,9 @@ rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.44.0.52:/home/op
             sh '''#Opsuser
 #BHT-Core
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core-Apps-ART\'
-#ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git checkout v4.11.1\''''
+
+rsync -a --exclude \'*.json\' $WORKSPACE/ART opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core/apps/ART
+ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git checkout v4.11.1\''''
           }
         }
 
@@ -94,39 +99,6 @@ rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.44.0.52:/home/op
     stage('Testing') {
       steps {
         echo 'No testing functionality found'
-      }
-    }
-
-    stage('Shipping') {
-      parallel {
-        stage('Shipping API') {
-          steps {
-            echo 'Starting to ship API'
-            sh '#python3 ship_api.py'
-          }
-        }
-
-        stage('Shipping Core') {
-          steps {
-            echo 'Starting to ship Core'
-            sh '#python3 ship_core.py'
-          }
-        }
-
-        stage('Shipping ART') {
-          steps {
-            echo 'Starting to ship ART'
-            sh '#python3 ship_art.py'
-          }
-        }
-
-      }
-    }
-
-    stage('Setup App') {
-      steps {
-        echo 'Starting to setup App'
-        sh '#python3 data_setup.py'
       }
     }
 
