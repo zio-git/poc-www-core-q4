@@ -4,7 +4,8 @@ pipeline {
     stage('Initializing') {
       steps {
         echo 'Initializing ...'
-        sh 'echo "Working from $WORKSPACE"'
+        sh '''echo "Working from $WORKSPACE"
+git daemon --export-all'''
       }
     }
 
@@ -60,7 +61,7 @@ pipeline {
 
     stage('Initializing git daemon') {
       steps {
-        sh 'git daemon --export-all'
+        sh '#git daemon --export-all'
       }
     }
 
