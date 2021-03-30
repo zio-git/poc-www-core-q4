@@ -58,9 +58,9 @@ pipeline {
       }
     }
 
-    stage('Building App') {
+    stage('Initializing git daemon') {
       steps {
-        echo 'Starting to build the App'
+        sh 'git daemon --export-all'
       }
     }
 
