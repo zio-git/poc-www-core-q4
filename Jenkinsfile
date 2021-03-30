@@ -58,9 +58,11 @@ pipeline {
       }
     }
 
-    stage('Initializing git daemon') {
+    stage('Remote checkout to latest tag') {
       steps {
-        sh '#git daemon --export-all'
+        sh '''#Opsuser
+ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git fetch --tags -f git://10.44.0.51//var/lib/jenkins/workspace/art-setup-no-container_master/BHT-EMR-API\'
+ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git checkout v4.10.25\''''
       }
     }
 
