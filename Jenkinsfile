@@ -67,7 +67,11 @@ pipeline {
 rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-EMR-API
 ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git checkout v4.10.25\'
 ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git describe > HEAD\'
-'''
+
+#Test Server
+rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.8.0.50:/home/opsuser/poc_test/BHT-EMR-API
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-EMR-API && git checkout v4.10.25\'
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\''''
           }
         }
 
@@ -79,7 +83,12 @@ ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git describe >
 
 rsync -a --exclude \'config\' $WORKSPACE/BHT-Core opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core
 ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git checkout v4.7.8\'
-ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HEAD\''''
+ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HEAD\'
+
+#Test Server
+rsync -a --exclude \'config\' $WORKSPACE/BHT-Core opsuser@10.8.0.50:/home/opsuser/poc_test/BHT-Core
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.8\'
+ssh opsuser@10.8.0.55 \'cd /var/www/BHT-Core && git describe > HEAD\''''
           }
         }
 
@@ -91,16 +100,26 @@ ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HE
 
 rsync -a --exclude \'*.json\' $WORKSPACE/ART opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core/apps/ART
 ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git checkout v4.11.3\'
-ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git describe > HEAD\''''
+ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git describe > HEAD\'
+
+#Test Server
+rsync -a --exclude \'*.json\' $WORKSPACE/ART opsuser@10.8.0.50:/home/opsuser/poc_test/BHT-Core/apps/ART
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.2\'
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
           }
         }
 
       }
     }
 
-    stage('Testing') {
+    stage('Loading metadata') {
       steps {
         echo 'No testing functionality found....'
+        sh '''#Test Server
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql\'
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql\'
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql\'
+ssh opsuser@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql\''''
       }
     }
 
