@@ -88,7 +88,7 @@ ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\''''
 #Test Server
 rsync -a --exclude \'config\' $WORKSPACE/BHT-Core egpaf@10.8.0.50:/var/www/BHT-Core
 ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.8\'
-ssh egpaf@10.8.0.55 \'cd /var/www/BHT-Core && git describe > HEAD\''''
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git describe > HEAD\''''
           }
         }
 
