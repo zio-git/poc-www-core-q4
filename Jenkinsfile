@@ -44,14 +44,12 @@ pipeline {
           steps {
             echo 'Starting to fetch ART from GitHub'
             echo 'Checking if BHT-Core-Apps-ART exists.'
-            sh '[ -d "BHT-Core-Apps-ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git'
-            echo 'Change directory to ART'
-            sh '#cd $WORKSPACE/BHT-Core-Apps-ART && git pull origin development'
+            sh '[ -d "ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git ART'
             echo 'Fetching new tags'
-            sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git fetch --tags -f'
+            sh 'cd $WORKSPACE/ART && git fetch --tags -f'
             echo 'Checking out to latest tag'
-            sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
-            sh 'cd $WORKSPACE/BHT-Core-Apps-ART && git describe > HEAD'
+            sh 'cd $WORKSPACE/ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
+            sh 'cd $WORKSPACE/ART && git describe > HEAD'
           }
         }
 
@@ -91,7 +89,7 @@ ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HE
 #BHT-Core
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core-Apps-ART\'
 
-rsync -a --exclude \'*.json\' $WORKSPACE/ART opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core/apps/ART
+rsync -a --exclude \'*.json\' $WORKSPACE/BHT-Core-apps-ART opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core/apps/ART
 ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git checkout v4.11.3\'
 ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git describe > HEAD\''''
           }
