@@ -102,7 +102,7 @@ ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git desc
 
     stage('Testing') {
       steps {
-        echo 'No testing functionality found'
+        echo 'No testing functionality found....'
       }
     }
 
