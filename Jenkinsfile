@@ -61,13 +61,15 @@ pipeline {
     stage('Remote server backup') {
       steps {
         sh '''#Test Server
-#ssh egpaf@10.8.0.50 \'cd /var/www/ && mkdir Apps_Backup\'
-#ssh egpaf@10.8.0.50 \'mv /var/www/BHT-Core/apps/ART/ /var/www/Apps_Backup\'
+ssh egpaf@10.8.0.50 \'cd /var/www/ && mkdir Apps_Backup\'
+ssh egpaf@10.8.0.50 \'mv /var/www/BHT-Core/ /var/www/Apps_Backup\'
+ssh egpaf@10.8.0.50 \'mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\'
+
 '''
       }
     }
 
-    stage('Remote Server Configation and Shipping') {
+    stage('Shipping & configuring') {
       parallel {
         stage('Core') {
           steps {
@@ -81,9 +83,11 @@ pipeline {
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HEAD\'
 
 #Test Server
-#rsync -a --update $WORKSPACE/BHT-Core egpaf@10.8.0.50:/var/www/BHT-Core
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.8\'
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git describe > HEAD\''''
+rsync -a $WORKSPACE/BHT-Core egpaf@10.8.0.50:/var/www
+ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\'
+ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.7\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git describe > HEAD\''''
           }
         }
 
@@ -100,9 +104,9 @@ pipeline {
 
 #Test Server
 rsync -a $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps
-ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/ART/application.json /var/www/BHT-Core/apps/ART\'
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.3\'
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
+ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.3\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
           }
         }
 
@@ -118,9 +122,11 @@ ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/ART/application.json /var/www/BHT-
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git describe > HEAD\'
 
 #Test Server
-#rsync -a --update $WORKSPACE/BHT-EMR-API/.git egpaf@10.8.0.50:/var/www/BHT-EMR-API
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git checkout v4.10.25\'
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\''''
+rsync -a $WORKSPACE/BHT-EMR-API egpaf@10.8.0.50:/var/www
+ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
+ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git checkout v4.10.26\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\''''
           }
         }
 
@@ -130,10 +136,10 @@ ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/ART/application.json /var/www/BHT-
     stage('Loading metada to remote server') {
       steps {
         sh '''#Test Server
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql\'
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql\'
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql\'
-#ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql\''''
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql\'
+ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql\''''
       }
     }
 
