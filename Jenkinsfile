@@ -69,7 +69,7 @@ pipeline {
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git describe > HEAD\'
 
 #Test Server
-rsync -a --update $WORKSPACE/BHT-EMR-API/.git egpaf@10.8.0.50:/var/www/BHT-EMR-API
+#rsync -a --update $WORKSPACE/BHT-EMR-API/.git egpaf@10.8.0.50:/var/www/BHT-EMR-API
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git checkout v4.10.25\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\''''
           }
