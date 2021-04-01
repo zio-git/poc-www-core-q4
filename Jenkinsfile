@@ -104,7 +104,7 @@ pipeline {
 
 #Test Server
 ssh egpaf@10.8.0.50 \'cd /var/www/ && mkdir Apps_Backup\'
-ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && mv ART/ /var/www/Apps_Backup\'
+ssh egpaf@10.8.0.50 \'mv /var/www/BHT-Core/apps/ART/ /var/www/Apps_Backup\'
 #rsync -a $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps/ART
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.2\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
