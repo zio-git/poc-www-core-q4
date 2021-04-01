@@ -103,7 +103,7 @@ pipeline {
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git describe > HEAD\'
 
 #Test Server
-rsync -avh --dry-run $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps/ART
+rsync -avh $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps/ART
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.2\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
           }
