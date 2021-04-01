@@ -69,7 +69,7 @@ pipeline {
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git describe > HEAD\'
 
 #Test Server
-rsync -a $WORKSPACE/BHT-EMR-API/.git egpaf@10.8.0.50:/var/www/BHT-EMR-API
+rsync -a --update $WORKSPACE/BHT-EMR-API/.git egpaf@10.8.0.50:/var/www/BHT-EMR-API
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git checkout v4.10.25\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\''''
           }
@@ -86,7 +86,7 @@ rsync -a $WORKSPACE/BHT-EMR-API/.git egpaf@10.8.0.50:/var/www/BHT-EMR-API
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HEAD\'
 
 #Test Server
-#rsync -a $WORKSPACE/BHT-Core egpaf@10.8.0.50:/var/www/BHT-Core
+#rsync -a --update $WORKSPACE/BHT-Core egpaf@10.8.0.50:/var/www/BHT-Core
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.8\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git describe > HEAD\''''
           }
@@ -103,7 +103,7 @@ rsync -a $WORKSPACE/BHT-EMR-API/.git egpaf@10.8.0.50:/var/www/BHT-EMR-API
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git describe > HEAD\'
 
 #Test Server
-#rsync -a $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps/ART
+rsync -a --update $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps/ART
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.2\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
           }
