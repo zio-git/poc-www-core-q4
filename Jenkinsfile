@@ -103,18 +103,10 @@ pipeline {
             sh '''#Opsuser
             #BHT-Core
             #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core\'
-
             #rsync -a --exclude \'config\' $WORKSPACE/BHT-Core opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core
+            
             #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git checkout v4.7.8\'
             #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HEAD\'
-
-            #Test Server
-            #rsync -a $WORKSPACE/BHT-Core egpaf@10.8.0.50:/var/www
-            #ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\'
-            #ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\'
-            #ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
-            #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.7\'
-            #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git describe > HEAD\''''
           }
         }
 
@@ -136,7 +128,6 @@ pipeline {
 
             #Test Server
             #rsync -a $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps
-            #ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\'
             #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.3\'
             #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
           }

@@ -4,8 +4,11 @@ import json
 import platform
 import subprocess
 import sys
+from fabric import Connection
 
-
+""" 
+Implements data collection commands
+"""
 class api:
 
     def get_sites_from_cluster(cluster_endpoint, site_endpoint):
@@ -17,6 +20,9 @@ class api:
     def get_site(site_id, site_endpoint):
         return json.loads(urllib.request.urlopen(urllib.request.Request(site_endpoint + str(site_id))).read().decode('utf-8'))
 
+"""
+Implements network commands 
+"""
 class net:
 
     def ping(ip_address):
@@ -30,7 +36,10 @@ class net:
         else:
 
             return False
-            
+
+""" 
+Implements file related commands
+"""         
 class files:
 
     def push(app, username, ip):
@@ -87,5 +96,24 @@ class files:
                 result = True
 
         return result
+
+""" 
+Implements git commands
+"""
+class git:
+    
+    def checkout(host, directory, tag):
+
+        if net.ping(ip):
+
+            result = Connection(host).run('cd ' + directory + ' && git checkout ' + tag + ' && git describe > HEAD', hide=True)
+
+            if result:
+
+                return True
+
+            else:
+
+                return False
 
 
