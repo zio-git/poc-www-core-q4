@@ -75,12 +75,6 @@ pipeline {
     stage('Remote server backup') {
       steps {
         sh '''#Test Server
-<<<<<<< HEAD
-        ssh egpaf@10.8.0.50 \'cd /var/www/ && mkdir Apps_Backup\'
-        ssh egpaf@10.8.0.50 \'mv /var/www/BHT-Core/ /var/www/Apps_Backup\'
-        ssh egpaf@10.8.0.50 \'mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\'
-        '''
-=======
 #ssh egpaf@10.8.0.50 \'cd /var/www/ && mkdir Apps_Backup\'
 #ssh egpaf@10.8.0.50 \'mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\'
 #ssh egpaf@10.8.0.50 \'mv /var/www/BHT-Core/ /var/www/Apps_Backup\'
@@ -90,7 +84,6 @@ pipeline {
 #ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\'
 #ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\'
 '''
->>>>>>> fe9d18ba5a1e5d13682c1cbe7176ea7c85375611
       }
     }
 
@@ -100,21 +93,6 @@ pipeline {
           steps {
             echo 'No testing functionality found....'
             sh '''#Opsuser
-<<<<<<< HEAD
-            #BHT-Core
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core\'
-
-            #rsync -a --exclude \'config\' $WORKSPACE/BHT-Core opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git checkout v4.7.8\'
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core && git describe > HEAD\'
-
-            #Test Server
-            rsync -a $WORKSPACE/BHT-Core egpaf@10.8.0.50:/var/www
-            ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\'
-            ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\'
-            ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.7\'
-            ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git describe > HEAD\''''
-=======
 #BHT-EMR-API
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-EMR-API\'
 
@@ -150,7 +128,6 @@ pipeline {
 #ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git checkout v4.7.7\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core && git describe > HEAD\''''
->>>>>>> fe9d18ba5a1e5d13682c1cbe7176ea7c85375611
           }
         }
 
@@ -163,20 +140,6 @@ pipeline {
           steps {
             echo 'Copying & configuring ART'
             sh '''#Opsuser
-<<<<<<< HEAD
-            #BHT-Core
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core-Apps-ART\'
-
-            #rsync -a --exclude \'*.json\' $WORKSPACE/ART opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-Core/apps/ART
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git checkout v4.11.3\'
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git describe > HEAD\'
-
-            #Test Server
-            rsync -a $WORKSPACE/ART egpaf@10.8.0.50:/var/www/BHT-Core/apps
-            ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\'
-            ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.3\'
-            ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
-=======
 #BHT-Core
 #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core-Apps-ART\'
 
@@ -189,29 +152,11 @@ pipeline {
 #ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git checkout v4.11.3\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-Core/apps/ART && git describe > HEAD\''''
->>>>>>> fe9d18ba5a1e5d13682c1cbe7176ea7c85375611
           }
         }
 
         stage('OPD') {
           steps {
-<<<<<<< HEAD
-            echo 'Copying and configuring API'
-            sh '''#Opsuser
-            #BHT-EMR-API
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-EMR-API\'
-
-            #rsync -a --exclude \'config\' $WORKSPACE/BHT-EMR-API opsuser@10.44.0.52:/home/opsuser/poc_test/BHT-EMR-API
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git checkout v4.10.25\'
-            #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-EMR-API && git describe > HEAD\'
-
-            #Test Server
-            rsync -a $WORKSPACE/BHT-EMR-API egpaf@10.8.0.50:/var/www
-            ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
-            ssh egpaf@10.8.0.50 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
-            ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git checkout v4.10.26\'
-            ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\''''
-=======
             echo 'Checking if OPD is deployed on new architecture'
             sh '''#Test server
 #ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/OPD" ] && cp /var/www/Apps_Backup/BHT-Core/apps/OPD /var/www/BHT-Core/apps || echo "Directory does not exist\''''
@@ -239,7 +184,6 @@ pipeline {
             echo 'Checking if HTS is deployed on new architecture'
             sh '''#Test server
 #ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/HTS" ] && cp /var/www/Apps_Backup/BHT-Core/apps/HTS /var/www/BHT-Core/apps || echo "Directory does not exist\''''
->>>>>>> fe9d18ba5a1e5d13682c1cbe7176ea7c85375611
           }
         }
 
@@ -249,17 +193,10 @@ pipeline {
     stage('Loading metadata') {
       steps {
         sh '''#Test Server
-<<<<<<< HEAD
-        ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql\'
-        ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql\'
-        ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql\'
-        ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql\''''
-=======
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql\'
 #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql\''''
->>>>>>> fe9d18ba5a1e5d13682c1cbe7176ea7c85375611
       }
     }
 
