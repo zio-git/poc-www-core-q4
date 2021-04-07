@@ -34,22 +34,20 @@ class files:
 
     def push(app, username, ip):
 
-        match app:
+        if app == 'api':  
 
-            case 'api':  
+            source_dir = "$WORKSPACE/BHT-EMR-API/"
 
-                source_dir = "$WORKSPACE/BHT-EMR-API/"
+            destination_dir = username + "@" + ip + ":/var/www/BHT-EMR-API"
 
-                destination_dir = username + "@" + ip + ":/var/www/BHT-EMR-API"
+            result = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
 
-                result = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
+            if result == 0:
 
-                if result == 0:
+                return True
 
-                    return True
+            else:
 
-                else:
-
-                    return False
+                return False
 
 
