@@ -5,6 +5,7 @@ import platform
 import subprocess
 import sys
 
+
 class api:
 
     def get_sites_from_cluster(cluster_endpoint, site_endpoint):
@@ -33,20 +34,33 @@ class net:
 class files:
 
     def push(app, username, ip):
+        
+        """ 
+        default value for result 
+        """
+        result = False
 
-        res = False
+        """ 
+        default value for exit_code 
+        """
+        exit_code = 1
 
+        """ 
+        ship to various destination depending on the app, of course, the source is different too
+        currently we are only dealing with 3 apps - api, core, and art
+        add a if block for new app 
+        """
         if app == 'api':  
 
             source_dir = "BHT-EMR-API/"
 
             destination_dir = username + "@" + ip + ":/var/www/BHT-EMR-API"
 
-            result = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
+            exit_code = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
 
-            if result == 0:
+            if exit_code == 0:
 
-                res = True
+                result = True
 
         if app == 'core':
 
@@ -54,11 +68,11 @@ class files:
 
             destination_dir = username + "@" + ip + ":/var/www/BHT-Core"
 
-            result = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
+            exit_code = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
 
-            if result == 0:
+            if exit_code == 0:
 
-                res = True
+                result = True
 
         if app == 'art':
 
@@ -66,10 +80,12 @@ class files:
 
             destination_dir = username + "@" + ip + ":/var/www/BHT-Core/apps/ART"
 
-            if result == 0:
+            exit_code = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
 
-                res = True
+            if exit_code == 0:
 
-        return res
+                result = True
+
+        return result
 
 
