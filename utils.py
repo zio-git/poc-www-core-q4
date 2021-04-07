@@ -34,6 +34,8 @@ class files:
 
     def push(app, username, ip):
 
+        res = False
+
         if app == 'api':  
 
             source_dir = "BHT-EMR-API/"
@@ -44,10 +46,30 @@ class files:
 
             if result == 0:
 
-                return True
+                res = True
 
-            else:
+        if app == 'core':
 
-                return False
+            source_dir = "BHT-Core/"
+
+            destination_dir = username + "@" + ip + ":/var/www/BHT-Core"
+
+            result = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
+
+            if result == 0:
+
+                res = True
+
+        if app == 'art':
+
+            source_dir = 'ART/'
+
+            destination_dir = username + "@" + ip + ":/var/www/BHT-Core/apps/ART"
+
+            if result == 0:
+
+                res = True
+
+        return res
 
 
