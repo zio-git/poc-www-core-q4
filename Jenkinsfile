@@ -1,14 +1,5 @@
-/* Pipeline for POC auto-deployment
- * Designed to integrate with other management systems in-terms of endpoints with facility details (including, IPs, usernames, etc)
- * Functionality: 1. Clones/ pulls files from GitHub, 2. Pushes the files to remote sites, 3. Set up the App at the facility, 4. Sends notification of the deployment result
- */
-
 pipeline {
-
   agent any
-
-  /* Initializing the Pipeline */
-  /* The Pipeline runs in $WORKSPACE, environment variable */
   stages {
     stage('Initializing') {
       steps {
@@ -17,11 +8,8 @@ pipeline {
       }
     }
 
-    /* Parallel steps */
     stage('Fetching Repos') {
       parallel {
-
-        /* Fetching API */
         stage('Fetching API') {
           steps {
             echo 'Starting to fetch API from GitHub'
@@ -37,7 +25,6 @@ pipeline {
           }
         }
 
-        /* Fetching Core */
         stage('Fetching Core') {
           steps {
             echo 'Starting to fetch Core from GitHub'
@@ -53,7 +40,6 @@ pipeline {
           }
         }
 
-        /* Fetching ART */
         stage('Fetching ART') {
           steps {
             echo 'Starting to fetch ART from GitHub'
@@ -107,6 +93,7 @@ pipeline {
             #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git checkout v4.10.26\'
             #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && git describe > HEAD\'
             #ssh egpaf@10.8.0.50 \'cd /var/www/BHT-EMR-API && rvm use 2.5.3\''''
+            sh 'python3 ship_to_cluster.py'
           }
         }
 
