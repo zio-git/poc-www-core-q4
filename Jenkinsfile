@@ -145,7 +145,7 @@ pipeline {
           steps {
             echo 'Checking if OPD is deployed on new architecture'
             sh '''#Test server
-#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/OPD" ] && cp /var/www/Apps_Backup/BHT-Core/apps/OPD /var/www/BHT-Core/apps\''''
+#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/OPD" ] && cp /var/www/Apps_Backup/BHT-Core/apps/OPD /var/www/BHT-Core/apps || echo "Directory does not exist\''''
           }
         }
 
@@ -153,7 +153,7 @@ pipeline {
           steps {
             echo 'Checking if ANC is deployed on new architecture'
             sh '''#Test server
-#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp /var/www/Apps_Backup/BHT-Core/apps/ANC /var/www/BHT-Core/apps\''''
+#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp /var/www/Apps_Backup/BHT-Core/apps/ANC /var/www/BHT-Core/apps || echo "Directory does not exist\''''
           }
         }
 
@@ -161,7 +161,7 @@ pipeline {
           steps {
             echo 'Checking if TB is deployed on new architecture'
             sh '''#Test server
-#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/TB" ] && cp /var/www/Apps_Backup/BHT-Core/apps/TB /var/www/BHT-Core/apps\''''
+#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/TB" ] && cp /var/www/Apps_Backup/BHT-Core/apps/TB /var/www/BHT-Core/apps || echo "Directory does not exist\''''
           }
         }
 
@@ -169,7 +169,7 @@ pipeline {
           steps {
             echo 'Checking if HTS is deployed on new architecture'
             sh '''#Test server
-#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/HTS" ] && cp /var/www/Apps_Backup/BHT-Core/apps/HTS /var/www/BHT-Core/apps\''''
+#ssh egpaf@10.8.0.50 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/HTS" ] && cp /var/www/Apps_Backup/BHT-Core/apps/HTS /var/www/BHT-Core/apps || echo "Directory does not exist\''''
           }
         }
 
