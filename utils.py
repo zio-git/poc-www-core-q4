@@ -36,7 +36,7 @@ class files:
 
         if app == 'api':  
 
-            source_dir = "$WORKSPACE/BHT-EMR-API/"
+            source_dir = "BHT-EMR-API/"
 
             destination_dir = username + "@" + ip + ":/var/www/BHT-EMR-API"
 
