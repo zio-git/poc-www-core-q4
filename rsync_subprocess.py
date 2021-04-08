@@ -1,5 +1,27 @@
-source_dir = "$WORKSPACE/BHT-EMR-API/"
+import os
+import urllib.request
+import json
+import platform
+import subprocess
+import sys
+from fabric import Connection
 
-destination_dir = username + "@" + ip + ":/var/www/BHT-EMR-API"
+def checkout(host, directory, tag):
 
-result = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
+    result = Connection(host).run('cd ' + directory + ' && git checkout ' + tag + ' && git describe > HEAD', hide=True)
+
+    if result:
+
+        return True
+
+    else:
+
+        return False
+
+host = "opsuser@10.44.0.52"
+directory = "/var/www/BHT-Core"
+
+if checkout(host, directory, 'v4.7.8'):
+    print("Successfully checked out " + Core + " to " + v4.7.8)
+else:
+    print("Failed to check out " + Core)
