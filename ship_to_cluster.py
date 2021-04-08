@@ -1,6 +1,4 @@
 import os
-import platform
-import subprocess
 import utils
 
 cluster_endpoint = 'http://10.44.0.52/sites/api/v1/get_single_cluster/1'
@@ -43,7 +41,11 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
 
                         if app == 'api':
 
-                            os.system("ssh " + host + " bash --login -c 'cd /var/www/BHT-EMR-API && rvm use 2.5.3'")
+                            os.system("ssh " + host + " bash --login -c 'cd /var/www/BHT-EMR-API && bundle install --local && rake db:migrate && git describe > HEAD && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f'")
+
+                        else:
+
+                            os.system("ssh " + host + " bash --login -c 'cd '" + directory + "' && git describe > HEAD'")
 
                         print("Successfully checked out " + app + " to " + app_tag[app])
 

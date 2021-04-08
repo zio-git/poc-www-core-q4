@@ -106,7 +106,7 @@ class git:
 
         connect = Connection(host)
 
-        result = connect.run('cd ' + directory + ' && git checkout -f ' + tag + ' && git describe > HEAD', hide=True)
+        result = connect.run('cd ' + directory + ' && git checkout -f ' + tag, hide=True)
 
         if result:           
 
