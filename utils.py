@@ -102,7 +102,7 @@ Implements git commands
 """
 class git:
     
-    def checkout(app, host, directory, tag):
+    def checkout(host, directory, tag):
 
         connect = Connection(host)
 
