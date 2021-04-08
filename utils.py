@@ -104,7 +104,7 @@ class git:
     
     def checkout(host, directory, tag):
 
-        result = Connection(host).run('cd ' + directory + ' && git checkout ' + tag + ' && git describe > HEAD', hide=True)
+        result = Connection(host).run('cd ' + directory + ' && git checkout -f ' + tag + ' && git describe > HEAD', hide=True)
 
         if result:
 
