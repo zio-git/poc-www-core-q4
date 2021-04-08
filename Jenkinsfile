@@ -62,7 +62,7 @@ pipeline {
       parallel {
         stage('API') {
           steps {
-            sh 'python3 ship_to_cluster.py'
+            sh 'python3 cluster_manager.py'
           }
         }
 
