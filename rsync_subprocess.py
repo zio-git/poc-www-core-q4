@@ -22,6 +22,6 @@ host = "opsuser@10.44.0.52"
 directory = "/var/www/BHT-Core"
 
 if checkout(host, directory, 'v4.7.8'):
-    print("Successfully checked out " + Core + " to " + v4.7.8)
+    print("Successfully checked out " + Core + " to v4.7.8")
 else:
     print("Failed to check out " + Core)
