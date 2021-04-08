@@ -108,21 +108,9 @@ class git:
 
         result = connect.run('cd ' + directory + ' && git checkout -f ' + tag + ' && git describe > HEAD', hide=True)
 
-        if result:
+        if result:           
 
-            if app == "api":
-
-                if connect.run('cd ' + directory + ' && rvm use 2.5.3', hide=True):
-
-                    return True
-
-                else:
-
-                    return False
-
-            else:
-
-                return True
+            return True
 
         else:
 

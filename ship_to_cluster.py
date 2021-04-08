@@ -36,10 +36,19 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
                     
                     # change app version/tag
                     host = fetched_site['fields']['username'] + "@" + fetched_site['fields']['ip_address']
+
                     directory = "/var/www/" + dir_name[app]
-                    if utils.git.checkout(app, host, directory, app_tag[app]):
+
+                    if utils.git.checkout(host, directory, app_tag[app]):
+
+                        if app == 'api':
+
+                            os.system("ssh " + host + " bash --login -c 'cd /var/www/BHT-EMR-API && rvm use 2.5.3'")
+
                         print("Successfully checked out " + app + " to " + app_tag[app])
+
                     else:
+
                         print("Failed to check out " + app)
                     
 
