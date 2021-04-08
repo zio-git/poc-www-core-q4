@@ -118,7 +118,6 @@ pipeline {
         stage('ART') {
           steps {
             echo 'Copying & configuring ART'
-            sh '''#Opsuser
             #BHT-Core
             #ssh opsuser@10.44.0.52 \'cd /home/opsuser/poc_test/BHT-Core/apps/ART && git fetch --tags -f git://10.44.0.51/var/lib/jenkins/workspace/art-setup-no-container_master/BHT-Core-Apps-ART\'
 
