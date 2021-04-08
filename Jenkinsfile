@@ -1,7 +1,5 @@
 pipeline {
   agent any
-
-  /* initializing the pipeline */
   stages {
     stage('Initializing') {
       steps {
@@ -10,12 +8,8 @@ pipeline {
       }
     }
 
-    /* Fetching all required repos - API, Core and ART */
     stage('Fetching Repos') {
       parallel {
-
-        /* Fetching API from https://github.com/HISMalawi/BHT-EMR-API.git */
-        /* [TODO] Add functionality to dynamically specify the git repo */
         stage('Fetching API') {
           steps {
             echo 'Starting to fetch API from GitHub'
@@ -31,7 +25,6 @@ pipeline {
           }
         }
 
-        /* Fetching Core from https://github.com/HISMalawi/BHT-Core.git */
         stage('Fetching Core') {
           steps {
             echo 'Starting to fetch Core from GitHub'
@@ -47,7 +40,6 @@ pipeline {
           }
         }
 
-        /* Fetching ART from https://github.com/HISMalawi/BHT-Core-Apps-ART.git */
         stage('Fetching ART') {
           steps {
             echo 'Starting to fetch ART from GitHub'
@@ -88,7 +80,6 @@ pipeline {
         stage('ART') {
           steps {
             echo 'Copying & configuring ART'
-            
           }
         }
 
