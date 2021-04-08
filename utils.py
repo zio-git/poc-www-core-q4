@@ -104,16 +104,14 @@ class git:
     
     def checkout(host, directory, tag):
 
-        if net.ping(ip):
+        result = Connection(host).run('cd ' + directory + ' && git checkout ' + tag + ' && git describe > HEAD', hide=True)
 
-            result = Connection(host).run('cd ' + directory + ' && git checkout ' + tag + ' && git describe > HEAD', hide=True)
+        if result:
 
-            if result:
+            return True
 
-                return True
+        else:
 
-            else:
-
-                return False
+            return False
 
 
