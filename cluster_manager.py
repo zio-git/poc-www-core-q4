@@ -1,5 +1,6 @@
 import os
 import utils
+from fabric import Connection
 
 cluster_endpoint = 'http://10.44.0.52/sites/api/v1/get_single_cluster/1'
 site_endpoint = 'http://10.44.0.52/sites/api/v1/get_single_site/'
@@ -53,13 +54,11 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
 
                         elif app == 'core':
 
-                            os.system("ssh " + host + "' cd '" + directory + "' && mv config/config.json.example config/config.json'")
-
+                            Connection(host).run("mv /var/www/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json")
 
                         elif app == 'art':
 
-                            os.system("ssh " + host + "' cd /var/www/BHT-Core/apps/ART && mv application.json.example application.json'")
-
+                            Connection(host).run("mv /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json")
 
                         print("Successfully checked out " + app + " to " + app_tag[app])
 
