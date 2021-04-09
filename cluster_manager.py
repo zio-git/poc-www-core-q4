@@ -42,11 +42,14 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
                         if app == 'api':
 
                             #os.system("ssh " + host + " bash --login -c 'cd /var/www/BHT-EMR-API && bundle install --local && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f && rake db:migrate'")
-                            check = os.system("ssh " + host + " ' . ~/.profile; exec cd /var/www/BHT-EMR-API && bundle install --local && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f && rake db:migrate'")
+                            #check = os.system("ssh " + host + " ' . ~/.profile; exec cd /var/www/BHT-EMR-API && bundle install --local && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f && rake db:migrate'")
                             #check = os.system("ssh " + host + " -t ' bash -l -c cd /var/www/BHT-EMR-API && bundle install --local && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f && rake db:migrate'")
                             #ssh user@host -t 'ls; exec $SHELL -l'
-                            #ssh user@host  -t 'bash -l -c "ls;bash"'
-                            print(check)
+                            #ssh user@host  -t 'bash -l -c "ls"'
+
+                            check = os.system("ssh " + host + " -t 'cd /var/www/BHT-EMR-API; bundle install --local; mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f; mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f; mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f; mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f; rake db:migrate; bash --login'")
+                            #ssh server -t "do.sh; bash --login"
+                            print("checking bundle and rake: " + check)
 
                         elif app == 'core':
 
