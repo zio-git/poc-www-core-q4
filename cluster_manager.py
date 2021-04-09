@@ -47,9 +47,9 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
                             #ssh user@host -t 'ls; exec $SHELL -l'
                             #ssh user@host  -t 'bash -l -c "ls"'
 
-                            check = os.system("ssh " + host + " -t 'cd /var/www/BHT-EMR-API; bundle install --local; mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f; mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f; mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f; mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f; rake db:migrate; bash --login'")
+                            check = os.system("ssh " + host + " -t 'cd /var/www/BHT-EMR-API; bundle install --local; mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f; mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f; mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f; mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f; rvm use 2.5.3; rake db:migrate; bash --login'")
                             #ssh server -t "do.sh; bash --login"
-                            print("checking bundle and rake: " + check)
+                            print("checking bundle and rake: " + str(check))
 
                         elif app == 'core':
 
