@@ -21,9 +21,9 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
             }    
 
             app_tag = {
-                'api'   :   'v4.10.25',
-                'core'  :   'v4.7.8',
-                'art'   :   'v4.11.3'
+                'api'   :   'v4.10.29',
+                'core'  :   'v4.7.11',
+                'art'   :   'v4.11.5'
             }        
 
             for app in apps:
@@ -41,11 +41,17 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
 
                         if app == 'api':
 
-                            os.system("ssh " + host + " bash --login -c 'cd /var/www/BHT-EMR-API && bundle install --local && rake db:migrate && git describe > HEAD && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f'")
+                            os.system("ssh " + host + " bash --login -c 'cd /var/www/BHT-EMR-API && bundle install --local && mysql -uroot -proot openmrs < db/sql/openmrs_metadata_1_7.sql -v -f && mysql -uroot -proot openmrs < db/sql/alternative_drug_names.sql -v -f && mysql -uroot -proot openmrs < db/sql/moh_regimens_v2020.sql -v -f && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql -v -f && rake db:migrate'")
 
-                        else:
+                        elif app == 'core':
 
-                            os.system("ssh " + host + " bash --login -c 'cd '" + directory + "' && git describe > HEAD'")
+                            os.system("ssh " + host + " bash --login -c 'cd '" + directory + "' && mv config/config.json.example config/config.json'")
+
+
+                        elif app == 'art':
+
+                            os.system("ssh " + host + " bash --login -c 'cd '" + directory + "' && mv application.json.example application.json'")
+
 
                         print("Successfully checked out " + app + " to " + app_tag[app])
 

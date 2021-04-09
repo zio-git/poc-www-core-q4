@@ -76,7 +76,7 @@ class files:
 
             destination_dir = username + "@" + ip + ":/var/www/BHT-Core"
 
-            exit_code = subprocess.call(['rsync', '--exclude=config', '-avzhe',  'ssh', source_dir, destination_dir])
+            exit_code = subprocess.call(['rsync', '-avzhe',  'ssh', source_dir, destination_dir])
 
             if exit_code == 0:
 
@@ -103,9 +103,7 @@ class git:
     
     def checkout(host, directory, tag):
 
-        connect = Connection(host)
-
-        result = connect.run('cd ' + directory + ' && git checkout -f ' + tag, hide=True)
+        result = Connection(host).run('cd ' + directory + ' && git checkout -f ' + tag + ' && git describe > HEAD', hide=True)
 
         if result:           
 
