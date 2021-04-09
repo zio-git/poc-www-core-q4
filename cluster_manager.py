@@ -1,5 +1,6 @@
 import os
 import utils
+from invoke import Responder
 from fabric import Connection
 
 cluster_endpoint = 'http://10.44.0.52/sites/api/v1/get_single_cluster/1'
@@ -61,6 +62,15 @@ for site in utils.api.get_sites_from_cluster(cluster_endpoint, site_endpoint):
                             Connection(host).run("mv /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json")
 
                         print("Successfully checked out " + app + " to " + app_tag[app])
+
+                        c = Connection(host)
+
+                        sudopass = Responder(
+                            pattern=r'\[sudo\] password:',
+                            response='123456\n',
+                        )
+
+                        c.run('sudo /opt/nginx/sbin/nginx -s reload', pty=True, watchers=[sudopass])
 
                     else:
 
