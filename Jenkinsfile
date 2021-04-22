@@ -58,61 +58,115 @@ pipeline {
       }
     }
 
-    stage('Shipping & configuring') {
-      parallel {
-        stage('API') {
-          steps {
-            sh 'python3 cluster_manager.py'
-          }
-        }
+    stage('Remote Server Backup') {
+      steps {
+        sh '''#Mzuzu Macro
+#ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
 
-        stage('Core') {
-          steps {
-            echo 'Copying and configuring API'
-          }
-        }
+#Chitipa DHO
+#ssh linserver@10.40.22.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh linserver@10.40.22.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh linserver@10.40.22.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
 
+#Karonga DHO
+#ssh linserver@10.40.26.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh linserver@10.40.26.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh linserver@10.40.26.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
+
+#Dowa DHO
+#ssh meduser@10.41.172.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh meduser@10.41.172.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh meduser@10.41.172.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
+
+#Rumphi DHO
+#ssh linserver@10.2.12.10 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh linserver@10.2.12.10 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh linserver@10.2.12.10 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
+
+#Chintheche Rural Hospital
+#ssh linserver@10.40.51.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh linserver@10.40.51.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh linserver@10.40.51.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
+
+#Kasungu DHO
+#ssh meduser@10.41.156.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh meduser@10.41.156.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh meduser@10.41.156.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
+
+#Nkhotakota DHO
+#ssh meduser@10.40.8.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh meduser@10.40.8.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh meduser@10.40.8.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
+
+#Salima DHO
+#ssh meduser@10.41.154.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh meduser@10.41.154.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh meduser@10.41.154.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
+
+#Mzuzu Central
+#ssh linserver@10.40.11.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
+#ssh linserver@10.40.11.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
+#ssh linserver@10.40.11.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\''''
       }
     }
 
-    stage('Apps') {
+    stage('Shipping') {
       parallel {
-        stage('ART') {
+        stage('API') {
           steps {
             echo 'Copying & configuring ART'
           }
         }
 
-        stage('OPD') {
+        stage('Core') {
           steps {
             echo 'Checking if OPD is deployed on new architecture'
-          }
-        }
-
-        stage('ANC') {
-          steps {
-            echo 'Checking if ANC is deployed on new architecture'
-          }
-        }
-
-        stage('TB') {
-          steps {
-            echo 'Checking if TB is deployed on new architecture'
-          }
-        }
-
-        stage('HTS') {
-          steps {
-            echo 'Checking if HTS is deployed on new architecture'
           }
         }
 
       }
     }
 
-    stage('Loading metadata') {
+    stage('New Architecture Apps') {
+      parallel {
+        stage('ART') {
+          steps {
+            echo 'Shiping ART'
+          }
+        }
+
+        stage('ANC') {
+          steps {
+            echo 'Configuring ANC'
+          }
+        }
+
+        stage('HTS') {
+          steps {
+            echo 'Configuring HTS '
+          }
+        }
+
+        stage('TB') {
+          steps {
+            echo 'Configaring TB'
+          }
+        }
+
+        stage('OPD') {
+          steps {
+            echo 'Configuring OPD'
+          }
+        }
+
+      }
+    }
+
+    stage('Loading Metadata') {
       steps {
-        echo 'Loading metadata'
+        echo 'Loading Metadata'
       }
     }
 
