@@ -153,7 +153,7 @@ pipeline {
 #ssh linserver@10.2.12.10 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
 
 #Chintheche Rural Hospital
-#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.51.3:/var/www
+rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.51.3:/var/www
 #ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
 #ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
 #ssh linserver@10.40.51.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
@@ -188,7 +188,7 @@ pipeline {
           steps {
             echo 'Shipping & configuring Core & ART'
             sh '''#Mzuzu Macro
-rsync -a $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www/html
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www/html
 #ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/html/BHT-Core/config\'
 #ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/html/BHT-Core/config\'
 #ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/html/BHT-Core/public\'
@@ -233,7 +233,7 @@ rsync -a $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www/html
 #ssh linserver@10.2.12.10 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
 
 #Chintheche Rural Hospital
-#rsync -a $WORKSPACE/BHT-Core linserver@10.40.51.3:/var/www
+rsync -a $WORKSPACE/BHT-Core linserver@10.40.51.3:/var/www/html
 #ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
 #ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
 #ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
