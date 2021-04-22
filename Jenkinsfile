@@ -44,14 +44,14 @@ pipeline {
           steps {
             echo 'Starting to fetch ART from GitHub'
             echo 'Checking if BHT-Core-Apps-ART exists.'
-            sh '[ -d "ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git ART'
+            sh '[ -d "BHT-Core/apps/ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git ART'
             echo 'Giving access to all user'
-            sh 'cd $WORKSPACE && chmod 777 ART'
+            sh 'cd $WORKSPACE/BHT-Core/apps && chmod 777 ART'
             echo 'Fetching new tags'
-            sh 'cd $WORKSPACE/ART && git fetch --tags -f'
+            sh 'cd $WORKSPACE/BHT-Core/apps/ART && git fetch --tags -f'
             echo 'Checking out to latest tag'
-            sh 'cd $WORKSPACE/ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
-            sh 'cd $WORKSPACE/ART && git describe > HEAD'
+            sh 'cd $WORKSPACE/BHT-Core/apps/ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
+            sh 'cd $WORKSPACE/BHT-Core/apps/ART && git describe > HEAD'
           }
         }
 
@@ -112,17 +112,76 @@ pipeline {
       }
     }
 
-    stage('Shipping') {
+    stage('Shipping & Configartion') {
       parallel {
         stage('API') {
           steps {
-            echo 'Copying & configuring ART'
+            echo 'Shipping & configuring API'
+            sh '''#Mzuzu Macro
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.30.3:/var/www
+#ssh linserver@10.40.30.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.30.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.30.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Chitipa DHO
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.22.3:/var/www
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.22.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Karonga DHO
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.22.3:/var/www
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.22.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Dowa DHO
+#rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.172.3:/var/www
+#ssh meduser@10.41.172.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.41.172.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.41.172.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Rumphi DHO
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.2.12.10:/var/www
+#ssh linserver@10.2.12.10 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.2.12.10 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.2.12.10 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Chintheche Rural Hospital
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.51.3:/var/www
+#ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.51.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Kasungu DHO
+#rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.156.3:/var/www
+#ssh meduser@10.41.156.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.41.156.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.41.156.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Nkhotakota DHO
+#rsync -a $WORKSPACE/BHT-EMR-API meduser@10.40.8.3:/var/www
+#ssh meduser@10.40.8.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.40.8.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.40.8.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Salima DHO
+#rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.154.3:/var/www
+#ssh meduser@10.41.154.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.41.154.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh meduser@10.41.154.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+
+#Mzuzu Central
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.11.3:/var/www
+#ssh linserver@10.40.11.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.11.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.11.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\''''
           }
         }
 
-        stage('Core') {
+        stage('Core & ART') {
           steps {
-            echo 'Checking if OPD is deployed on new architecture'
+            echo 'Shipping & Configuring Core'
           }
         }
 
@@ -131,12 +190,6 @@ pipeline {
 
     stage('New Architecture Apps') {
       parallel {
-        stage('ART') {
-          steps {
-            echo 'Shiping ART'
-          }
-        }
-
         stage('ANC') {
           steps {
             echo 'Configuring ANC'
