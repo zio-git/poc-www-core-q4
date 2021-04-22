@@ -117,9 +117,9 @@ ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Direc
       }
     }
 
-    stage('New Architecture Apps') {
+    stage('Shipping & Configurations') {
       parallel {
-        stage('Shipping & Configurations') {
+        stage('API') {
           steps {
             echo 'shipping & Configuring API'
             sh '''#Mzuzu Macro
