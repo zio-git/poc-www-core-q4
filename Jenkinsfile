@@ -135,10 +135,10 @@ pipeline {
 #ssh linserver@10.40.22.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
 
 #Karonga DHO
-#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.22.3:/var/www
-#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
-#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
-#ssh linserver@10.40.22.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.26.3:/var/www
+#ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+#ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
 
 #Dowa DHO
 #rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.172.3:/var/www
@@ -187,6 +187,97 @@ pipeline {
         stage('Core & ART') {
           steps {
             echo 'Shipping & configuring Core & ART'
+            sh '''#Mzuzu Macro
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www
+#ssh linserver@10.40.30.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.30.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.30.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh linserver@10.40.30.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh linserver@10.40.30.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh linserver@10.40.30.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Chitipa DHO
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.22.3:/var/www
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh linserver@10.40.22.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh linserver@10.40.22.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh linserver@10.40.22.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Karonga DHO
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.26.3:/var/www
+#ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Dowa DHO
+#rsync -a $WORKSPACE/BHT-Core meduser@10.41.172.3:/var/www
+#ssh meduser@10.41.172.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.41.172.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.41.172.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh meduser@10.41.172.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh meduser@10.41.172.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh meduser@10.41.172.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Rumphi DHO
+#rsync -a $WORKSPACE/BHT-Core linserver@10.2.12.10:/var/www
+#ssh linserver@10.2.12.10 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.2.12.10 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.2.12.10 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh linserver@10.2.12.10 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh linserver@10.2.12.10 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh linserver@10.2.12.10 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Chintheche Rural Hospital
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.51.3:/var/www
+#ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh linserver@10.40.51.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh linserver@10.40.51.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh linserver@10.40.51.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Kasungu DHO
+#rsync -a $WORKSPACE/BHT-Core meduser@10.41.156.3:/var/www
+#ssh meduser@10.41.156.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.41.156.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.41.156.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh meduser@10.41.156.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh meduser@10.41.156.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh meduser@10.41.156.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+
+#Nkhotakota DHO
+#rsync -a $WORKSPACE/BHT-Core meduser@10.40.8.3:/var/www
+#ssh meduser@10.40.8.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.40.8.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.40.8.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh meduser@10.40.8.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh meduser@10.40.8.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh meduser@10.40.8.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Salima DHO
+#rsync -a $WORKSPACE/BHT-Core meduser@10.41.154.3:/var/www
+#ssh meduser@10.41.154.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.41.154.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh meduser@10.41.154.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh meduser@10.41.154.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh meduser@10.41.154.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh meduser@10.41.154.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Mzuzu Central
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.11.3:/var/www
+#ssh linserver@10.40.11.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.11.3 \\\'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/BHT-Core/config\\\'
+#ssh linserver@10.40.11.3 \\\'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\\\'
+#ssh linserver@10.40.11.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
+#ssh linserver@10.40.11.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
+#ssh linserver@10.40.11.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+'''
           }
         }
 
