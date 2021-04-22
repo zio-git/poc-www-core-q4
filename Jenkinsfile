@@ -285,37 +285,20 @@ pipeline {
     }
 
     stage('Apps') {
-      parallel {
-        stage('ANC') {
-          steps {
-            echo 'Loading Metadata'
-          }
-        }
-
-        stage('HTS') {
-          steps {
-            echo 'Configuring HTS'
-          }
-        }
-
-        stage('TB') {
-          steps {
-            echo 'Configuring TB'
-          }
-        }
-
-        stage('OPD') {
-          steps {
-            echo 'Configuring OPD'
-          }
-        }
-
+      steps {
+        echo 'Copying OPD/ANC/HTS if it was deployed on new architecture'
+        sh '''#Mzuzu Macro
+#ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core/apps/OPD" ] && cp /var/www/Apps_Backup/BHT-Core/apps/OPD /var/www/BHT-Core/apps || echo "Directory does not exist\\\'
+#ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core/apps/HTS" ] && cp /var/www/Apps_Backup/BHT-Core/apps/HTS /var/www/BHT-Core/apps || echo "Directory does not exist\\\'
+#ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp /var/www/Apps_Backup/BHT-Core/apps/ANC /var/www/BHT-Core/apps || echo "Directory does not exist\\\''''
       }
     }
 
     stage('Lading Metadata') {
       steps {
         echo 'Loading metadata'
+        sh '''#Mzuzu Macro
+#ssh linserver@10.40.30.3 \\\'cd /var/www/BHT-EMR-API && mysql -uroot -proot openmrs < db/sql/bart2_views_schema_additions.sql\\\''''
       }
     }
 
