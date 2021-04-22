@@ -66,9 +66,9 @@ pipeline {
       steps {
         echo 'Remote Server apps backup'
         sh '''#Mzuzu Macro
-ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\'
-ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\'
-ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/html/BHT-Core/ /var/www/Apps_Backup\'
+#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\'
+#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\'
+#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/html/BHT-Core/ /var/www/Apps_Backup\'
 
 #Chitipa DHO
 #ssh linserver@10.40.22.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
@@ -123,10 +123,10 @@ ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Direc
           steps {
             echo 'shipping & Configuring API'
             sh '''#Mzuzu Macro
-rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.30.3:/var/www
-ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
-ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
-ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && rvm use 2.5.3\'
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.30.3:/var/www
+#ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
+#ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
+#ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && rvm use 2.5.3\'
 
 #Chitipa DHO
 #rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.22.3:/var/www
@@ -189,12 +189,12 @@ ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && rvm use 2.5.3\'
             echo 'Shipping & configuring Core & ART'
             sh '''#Mzuzu Macro
 rsync -a $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www/html
-ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/html/BHT-Core/config\'
-ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/html/BHT-Core/config\'
-ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/html/BHT-Core/public\'
-ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/html/BHT-Core/apps/ART\'
-ssh linserver@10.40.30.3 \'cd /var/www/html/BHT-Core && rvm use 2.5.3\'
-ssh linserver@10.40.30.3 \'cd /var/www/html/BHT-Core/apps/ART && rvm use 2.5.3\'
+#ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/html/BHT-Core/config\'
+#ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/html/BHT-Core/config\'
+#ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/html/BHT-Core/public\'
+#ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/html/BHT-Core/apps/ART\'
+#ssh linserver@10.40.30.3 \'cd /var/www/html/BHT-Core && rvm use 2.5.3\'
+#ssh linserver@10.40.30.3 \'cd /var/www/html/BHT-Core/apps/ART && rvm use 2.5.3\'
 
 #Chitipa DHO
 #rsync -a $WORKSPACE/BHT-Core linserver@10.40.22.3:/var/www
@@ -288,9 +288,9 @@ ssh linserver@10.40.30.3 \'cd /var/www/html/BHT-Core/apps/ART && rvm use 2.5.3\'
       steps {
         echo 'Copying OPD/ANC/HTS if it was deployed on new architecture'
         sh '''#Mzuzu Macro
-ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/OPD" ] && cp /var/www/Apps_Backup/BHT-Core/apps/OPD /var/www/html/BHT-Core/apps || echo "Directory does not exist\'
-ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/HTS" ] && cp /var/www/Apps_Backup/BHT-Core/apps/HTS /var/www/html/BHT-Core/apps || echo "Directory does not exist\'
-ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp /var/www/Apps_Backup/BHT-Core/apps/ANC /var/www/html/BHT-Core/apps || echo "Directory does not exist\''''
+#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/OPD" ] && cp /var/www/Apps_Backup/BHT-Core/apps/OPD /var/www/html/BHT-Core/apps || echo "Directory does not exist\'
+#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/HTS" ] && cp /var/www/Apps_Backup/BHT-Core/apps/HTS /var/www/html/BHT-Core/apps || echo "Directory does not exist\'
+#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp /var/www/Apps_Backup/BHT-Core/apps/ANC /var/www/html/BHT-Core/apps || echo "Directory does not exist\''''
       }
     }
 
@@ -298,7 +298,7 @@ ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp
       steps {
         echo 'Loading metadata'
         sh '''#Mzuzu Macro
-ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot macro_mzuzu_openmrs < db/sql/bart2_views_schema_additions.sql\''''
+#ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot macro_mzuzu_openmrs < db/sql/bart2_views_schema_additions.sql\''''
       }
     }
 
