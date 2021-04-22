@@ -123,7 +123,7 @@ ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Direc
           steps {
             echo 'shipping & Configuring API'
             sh '''#Mzuzu Macro
-rsync -avzhe $WORKSPACE/BHT-EMR-API linserver@10.40.30.3:/var/www
+rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.30.3:/var/www
 ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
 ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
 ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && rvm use 2.5.3\'
@@ -188,7 +188,7 @@ ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && rvm use 2.5.3\'
           steps {
             echo 'Shipping & configuring Core & ART'
             sh '''#Mzuzu Macro
-rsync -avzhe $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www/html
+rsync -a $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www/html
 ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/administration.json /var/www/html/BHT-Core/config\'
 ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/config/config.json /var/www/html/BHT-Core/config\'
 ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/html/BHT-Core/public\'
