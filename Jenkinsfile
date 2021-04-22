@@ -298,7 +298,7 @@ ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp
       steps {
         echo 'Loading metadata'
         sh '''#Mzuzu Macro
-#ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot macro_mzuzu_openmrs < db/sql/bart2_views_schema_additions.sql\''''
+ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot macro_mzuzu_openmrs < db/sql/bart2_views_schema_additions.sql\''''
       }
     }
 
