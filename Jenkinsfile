@@ -37,29 +37,34 @@ pipeline {
             echo 'Checking out to latest tag'
             sh 'cd $WORKSPACE/BHT-Core && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
             sh 'cd $WORKSPACE/BHT-Core && git describe $(git describe --tags `git rev-list --tags --max-count=1`)'
-          }
-        }
-
-        stage('Fetching ART') {
-          steps {
-            echo 'Starting to fetch ART from GitHub'
-            echo 'Checking if BHT-Core-Apps-ART exists.'
-            sh '[ -d "BHT-Core/apps/ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git ART'
-            echo 'Giving access to all user'
-            sh 'cd $WORKSPACE/BHT-Core/apps && chmod 777 ART'
-            echo 'Fetching new tags'
-            sh 'cd $WORKSPACE/BHT-Core/apps/ART && git fetch --tags -f'
-            echo 'Checking out to latest tag'
-            sh 'cd $WORKSPACE/BHT-Core/apps/ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
-            sh 'cd $WORKSPACE/BHT-Core/apps/ART && git describe > HEAD'
+            echo 'Checking/Creating apps folder'
+            sh '[ -d "BHT-Core/apps" ] && echo "apps already created." || mkdir apps'
+            echo 'Giving access rights to apps'
+            sh 'cd $WORKSPACE/BHT-Core && chmod 777 apps'
           }
         }
 
       }
     }
 
+    stage('Fetching ART') {
+      steps {
+        echo 'Starting to fetch ART from GitHub'
+        echo 'Checking if BHT-Core-Apps-ART exists.'
+        sh '[ -d "BHT-Core/apps/ART" ] && echo "ART already cloned." || git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git ART'
+        echo 'Giving access to all user'
+        sh 'cd $WORKSPACE/BHT-Core/apps && chmod 777 ART'
+        echo 'Fetching new tags'
+        sh 'cd $WORKSPACE/BHT-Core/apps/ART && git fetch --tags -f'
+        echo 'Checking out to latest tag'
+        sh 'cd $WORKSPACE/BHT-Core/apps/ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
+        sh 'cd $WORKSPACE/BHT-Core/apps/ART && git describe > HEAD'
+      }
+    }
+
     stage('Remote Server Backup') {
       steps {
+        echo 'Remote Server apps backup'
         sh '''#Mzuzu Macro
 #ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
 #ssh linserver@10.40.30.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
@@ -112,11 +117,11 @@ pipeline {
       }
     }
 
-    stage('Shipping & Configartion') {
+    stage('New Architecture Apps') {
       parallel {
-        stage('API') {
+        stage('Shipping & Configurations') {
           steps {
-            echo 'Shipping & configuring API'
+            echo 'shipping & Configuring API'
             sh '''#Mzuzu Macro
 #rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.30.3:/var/www
 #ssh linserver@10.40.30.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
@@ -181,30 +186,30 @@ pipeline {
 
         stage('Core & ART') {
           steps {
-            echo 'Shipping & Configuring Core'
+            echo 'Shipping & configuring Core & ART'
           }
         }
 
       }
     }
 
-    stage('New Architecture Apps') {
+    stage('Apps') {
       parallel {
         stage('ANC') {
           steps {
-            echo 'Configuring ANC'
+            echo 'Loading Metadata'
           }
         }
 
         stage('HTS') {
           steps {
-            echo 'Configuring HTS '
+            echo 'Configuring HTS'
           }
         }
 
         stage('TB') {
           steps {
-            echo 'Configaring TB'
+            echo 'Configuring TB'
           }
         }
 
@@ -217,9 +222,9 @@ pipeline {
       }
     }
 
-    stage('Loading Metadata') {
+    stage('Lading Metadata') {
       steps {
-        echo 'Loading Metadata'
+        echo 'Loading metadata'
       }
     }
 
