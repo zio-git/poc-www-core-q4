@@ -141,19 +141,19 @@ pipeline {
 #ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
 
 #Kaporo Rural Hospital
-#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.63.3:/var/www
-#ssh linserver@10.40.63.3 \\\'cp /var/www/app_backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
-#ssh linserver@10.40.63.3 \\\'cp /var/www/app_backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.63.3:/var/www
+ssh linserver@10.40.63.3 \'cp /var/www/app-backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
+ssh linserver@10.40.63.3 \'cp /var/www/app-backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
 
 #Chilumba Rural Hospital
-#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.59.3:/var/www
-#ssh linserver@10.40.59.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
-#ssh linserver@10.40.59.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.59.3:/var/www
+ssh linserver@10.40.59.3 \'cp /var/www/app-backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
+ssh linserver@10.40.59.3 \'cp /var/www/app-backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
 
 #Madisi Mission Hospital
-#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.41.173.3:/var/www
-#ssh linserver@10.41.173.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
-#ssh linserver@10.41.173.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
+rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.173.3:/var/www
+ssh meduser@10.41.173.3 \'cp /var/www/app-backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
+ssh meduser@10.41.173.3 \'cp /var/www/app-backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
 
 #Dowa DHO
 #rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.172.3:/var/www
@@ -230,25 +230,25 @@ rsync -a $WORKSPACE/BHT-EMR-API meduser@10.40.8.3:/var/www
 #ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
 
 #Kaporo Rural Hospital
-#rsync -a $WORKSPACE/BHT-Core linserver@10.40.63.3:/var/www/html
-#ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/config/administration.json.example /var/www/BHT-Core/config/administration.json\'
-#ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json\'
-#ssh linserver@10.40.63.3 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
-#ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
+rsync -a $WORKSPACE/BHT-Core linserver@10.40.63.3:/var/www/html
+ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/config/administration.json.example /var/www/html/BHT-Core/config/administration.json\'
+ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/config/config.json.example /var/www/html/BHT-Core/config/config.json\'
+ssh linserver@10.40.63.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/html/www/BHT-Core/public\'
+ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/apps/ART/application.json.example /var/www/html/BHT-Core/apps/ART/application.json\'
 
 #Chilumba Rural Hospital
-#rsync -a $WORKSPACE/BHT-Core linserver@10.40.59.3:/var/www/html
-#ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/config/administration.json.example /var/www/BHT-Core/config/administration.json\'
-#ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json\'
-#ssh linserver@10.40.59.3 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
-#ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
+rsync -a $WORKSPACE/BHT-Core linserver@10.40.59.3:/var/www/html
+ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/config/administration.json.example /var/www/html/BHT-Core/config/administration.json\'
+ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/config/config.json.example /var/www/html/BHT-Core/config/config.json\'
+ssh linserver@10.40.59.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/html/BHT-Core/public\'
+ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/apps/ART/application.json.example /var/www/html/BHT-Core/apps/ART/application.json\'
 
 #Madisi Mission Hospital
-#rsync -a $WORKSPACE/BHT-Core linserver@10.41.173.3:/var/www/html
-#ssh linserver@10.41.173.3 \'cp /var/www/BHT-Core/config/administration.json.example /var/www/BHT-Core/config/administration.json\'
-#ssh linserver@10.41.173.3 \'cp /var/www/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json\'
-#ssh linserver@10.41.173.3 \'cp /var/www/Apps_Backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
-#ssh linserver@10.41.173.3 \'cp /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
+rsync -a $WORKSPACE/BHT-Core meduser@10.41.173.3:/var/www
+ssh meduser@10.41.173.3 \'cp /var/www/BHT-Core/config/administration.json.example /var/www/BHT-Core/config/administration.json\'
+ssh meduser@10.41.173.3 \'cp /var/www/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json\'
+ssh meduser@10.41.173.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
+ssh meduser@10.41.173.3 \'cp /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
 
 #Dowa DHO
 #rsync -a $WORKSPACE/BHT-Core meduser@10.41.172.3:/var/www
