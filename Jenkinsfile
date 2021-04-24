@@ -140,6 +140,13 @@ pipeline {
 #ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\\\'
 #ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-EMR-API && rvm use 2.5.3\\\'
 
+#Kaporo Rural Hospital
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.63.3:/var/www
+
+
+#Chilumba Rural Hospital
+#rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.59.3:/var/www
+
 #Dowa DHO
 #rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.172.3:/var/www
 #ssh meduser@10.41.172.3 \\\'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\\\'
@@ -213,6 +220,12 @@ rsync -a $WORKSPACE/BHT-EMR-API meduser@10.40.8.3:/var/www
 #ssh linserver@10.40.26.3 \\\'cp /var/www/Apps_Backup/BHT-Core/apps/ART/application.json /var/www/BHT-Core/apps/ART\\\'
 #ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-Core && rvm use 2.5.3\\\'
 #ssh linserver@10.40.26.3 \\\'cd /var/www/BHT-Core/apps/ART && rvm use 2.5.3\\\'
+
+#Kaporo Rural Hospital
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.63.3:/var/www/html
+
+#Chilumba Rural Hospital
+#rsync -a $WORKSPACE/BHT-Core linserver@10.40.59.3:/var/www
 
 #Dowa DHO
 #rsync -a $WORKSPACE/BHT-Core meduser@10.41.172.3:/var/www
