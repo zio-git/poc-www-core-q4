@@ -233,21 +233,21 @@ rsync -a $WORKSPACE/BHT-EMR-API meduser@10.40.8.3:/var/www
 rsync -a $WORKSPACE/BHT-Core linserver@10.40.63.3:/var/www/html
 ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/config/administration.json.example /var/www/html/BHT-Core/config/administration.json\'
 ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/config/config.json.example /var/www/html/BHT-Core/config/config.json\'
-ssh linserver@10.40.63.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/html/www/BHT-Core/public\'
+#ssh linserver@10.40.63.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/html/www/BHT-Core/public\'
 ssh linserver@10.40.63.3 \'cp /var/www/html/BHT-Core/apps/ART/application.json.example /var/www/html/BHT-Core/apps/ART/application.json\'
 
 #Chilumba Rural Hospital
 rsync -a $WORKSPACE/BHT-Core linserver@10.40.59.3:/var/www/html
 ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/config/administration.json.example /var/www/html/BHT-Core/config/administration.json\'
 ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/config/config.json.example /var/www/html/BHT-Core/config/config.json\'
-ssh linserver@10.40.59.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/html/BHT-Core/public\'
+#ssh linserver@10.40.59.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/html/BHT-Core/public\'
 ssh linserver@10.40.59.3 \'cp /var/www/html/BHT-Core/apps/ART/application.json.example /var/www/html/BHT-Core/apps/ART/application.json\'
 
 #Madisi Mission Hospital
 rsync -a $WORKSPACE/BHT-Core meduser@10.41.173.3:/var/www
 ssh meduser@10.41.173.3 \'cp /var/www/BHT-Core/config/administration.json.example /var/www/BHT-Core/config/administration.json\'
 ssh meduser@10.41.173.3 \'cp /var/www/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json\'
-ssh meduser@10.41.173.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
+#ssh meduser@10.41.173.3 \'cp /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
 ssh meduser@10.41.173.3 \'cp /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
 
 #Dowa DHO
