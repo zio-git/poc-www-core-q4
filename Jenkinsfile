@@ -156,9 +156,9 @@ pipeline {
 #ssh meduser@10.41.173.3 \'cp /var/www/app-backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
 
 #Dowa DHO
-rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.172.3:/var/www
-ssh meduser@10.41.172.3 \'cp /var/www/app-backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
-ssh meduser@10.41.172.3 \'cp /var/www/app_backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
+#rsync -a $WORKSPACE/BHT-EMR-API meduser@10.41.172.3:/var/www
+#ssh meduser@10.41.172.3 \'cp /var/www/app-backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
+#ssh meduser@10.41.172.3 \'cp /var/www/app_backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
 
 
 #Rumphi DHO
@@ -251,11 +251,11 @@ ssh meduser@10.41.172.3 \'cp /var/www/app_backup/BHT-EMR-API/config/database.yml
 #ssh meduser@10.41.173.3 \'cp /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
 
 #Dowa DHO
-rsync -a $WORKSPACE/BHT-Core meduser@10.41.172.3:/var/www
-ssh meduser@10.41.172.3 \'cp /var/www/BHT-Core/config/administration.json.example /var/www/BHT-Core/config/administration.json\'
-ssh meduser@10.41.172.3 \'cp /var/www/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json\'
-ssh meduser@10.41.172.3 \'cp -\\r /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
-ssh meduser@10.41.172.3 \'cp /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
+#rsync -a $WORKSPACE/BHT-Core meduser@10.41.172.3:/var/www
+#ssh meduser@10.41.172.3 \'cp /var/www/BHT-Core/config/administration.json.example /var/www/BHT-Core/config/administration.json\'
+#ssh meduser@10.41.172.3 \'cp /var/www/BHT-Core/config/config.json.example /var/www/BHT-Core/config/config.json\'
+#ssh meduser@10.41.172.3 \'cp -\\r /var/www/app-backup/BHT-Core/public/touchscreentoolkit /var/www/BHT-Core/public\'
+#ssh meduser@10.41.172.3 \'cp /var/www/BHT-Core/apps/ART/application.json.example /var/www/BHT-Core/apps/ART/application.json\'
 
 #Rumphi DHO
 #rsync -a $WORKSPACE/BHT-Core linserver@10.2.12.10:/var/www
