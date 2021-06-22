@@ -70,7 +70,7 @@ pipeline {
             echo 'shipping & Configuring API'
             sh '''#Test Server
 rsync -r --exclude="config" $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
-ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && rm Gemfile.lock\'
+#ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && rm Gemfile.lock\'
 ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && git checkout v4.10.47 && git describe > HEAD\'
 ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && bundle install --local\'
 ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && bin/update_art_metadata.sh development\'
