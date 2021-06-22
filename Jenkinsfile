@@ -159,7 +159,7 @@ ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./poc_setup.sh\'
             sh '''#Test Server
 rsync -r --exclude="config" --exclude="apps" --exclude="public" $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www
 rsync -r --exclude="application.yml" $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/BHT-Core/apps
-ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./api_art_setup.sh\'
+ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./core_art_setup.sh\'
 
 #Mzuzu Macro
 #rsync -a $WORKSPACE/BHT-Core linserver@10.40.30.3:/var/www/html
