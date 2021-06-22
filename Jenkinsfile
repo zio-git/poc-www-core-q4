@@ -68,7 +68,8 @@ pipeline {
         stage('API') {
           steps {
             echo 'shipping & Configuring API'
-            sh '''#Test Server
+            sh '''#!bin/bash --login
+#Test Server
 rsync -r --exclude="config" $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
 ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && rm Gemfile.lock\'
 #ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && git checkout v4.10.47 && git describe > HEAD\'
