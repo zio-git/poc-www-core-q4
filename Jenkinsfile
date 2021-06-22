@@ -20,7 +20,7 @@ pipeline {
             echo 'Fetching Tags'
             sh 'cd $WORKSPACE/BHT-EMR-API && git fetch --tags -f'
             echo 'Checking out to Latest Tag'
-            sh 'cd $WORKSPACE/BHT-EMR-API && git checkout v4.10.44'
+            sh 'cd $WORKSPACE/BHT-EMR-API && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
             sh 'cd $WORKSPACE/BHT-EMR-API && git describe > HEAD'
           }
         }
@@ -62,67 +62,15 @@ pipeline {
       }
     }
 
-    stage('Remote Server Backup') {
-      steps {
-        echo 'Remote Server apps backup'
-        sh '''#Mzuzu Macro
-#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\'
-#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\'
-#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/html/BHT-Core/ /var/www/Apps_Backup\'
-
-#Chitipa DHO
-#ssh linserver@10.40.22.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh linserver@10.40.22.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh linserver@10.40.22.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Karonga DHO
-#ssh linserver@10.40.26.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh linserver@10.40.26.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh linserver@10.40.26.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Dowa DHO
-#ssh meduser@10.41.172.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh meduser@10.41.172.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh meduser@10.41.172.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Rumphi DHO
-#ssh linserver@10.2.12.10 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh linserver@10.2.12.10 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh linserver@10.2.12.10 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Chintheche Rural Hospital
-#ssh linserver@10.40.51.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh linserver@10.40.51.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh linserver@10.40.51.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Kasungu DHO
-#ssh meduser@10.41.156.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh meduser@10.41.156.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh meduser@10.41.156.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Nkhotakota DHO
-#ssh meduser@10.40.8.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh meduser@10.40.8.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh meduser@10.40.8.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Salima DHO
-#ssh meduser@10.41.154.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh meduser@10.41.154.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh meduser@10.41.154.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\'
-
-#Mzuzu Central
-#ssh linserver@10.40.11.3 \\\'[ -d "/var/www/Apps_Backup" ] && echo "Directory already exists" || cd /var/www/ && mkdir Apps_Backup\\\'
-#ssh linserver@10.40.11.3 \\\'[ -d "/var/www/Apps_Backup/BHT-EMR-API" ] && echo "Directory already exists" || mv /var/www/BHT-EMR-API/ /var/www/Apps_Backup\\\'
-#ssh linserver@10.40.11.3 \\\'[ -d "/var/www/Apps_Backup/BHT-Core" ] && echo "Directory already exists" || mv /var/www/BHT-Core/ /var/www/Apps_Backup\\\''''
-      }
-    }
-
     stage('Shipping & Configurations') {
       parallel {
         stage('API') {
           steps {
             echo 'shipping & Configuring API'
-            sh '''#Mzuzu Macro
+            sh '''#Test Server
+rsync -r --exclude="config" $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
+
+#Mzuzu Macro
 #rsync -a $WORKSPACE/BHT-EMR-API linserver@10.40.30.3:/var/www
 #ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/application.yml /var/www/BHT-EMR-API/config\'
 #ssh linserver@10.40.30.3 \'cp /var/www/Apps_Backup/BHT-EMR-API/config/database.yml /var/www/BHT-EMR-API/config\'
