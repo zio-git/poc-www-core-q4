@@ -51,7 +51,7 @@ pipeline {
       steps {
         echo 'Starting to fetch ART from GitHub'
         echo 'Checking if BHT-Core-Apps-ART exists.'
-        sh '[ -d "$WORKSPACE/BHT-Core/apps" ] && echo "ART already cloned." || cd $WORKSPACE/BHT-Core/apps && git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git ART'
+        sh '[ -d "$WORKSPACE/BHT-Core/apps/ART" ] && echo "ART already cloned." || cd $WORKSPACE/BHT-Core/apps && git clone https://github.com/HISMalawi/BHT-Core-Apps-ART.git ART'
         echo 'Giving access to all user'
         sh 'cd $WORKSPACE/BHT-Core/apps && chmod 777 ART'
         echo 'Fetching new tags'
