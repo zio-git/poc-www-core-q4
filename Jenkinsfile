@@ -69,8 +69,8 @@ pipeline {
           steps {
             echo 'shipping & Configuring API'
             sh '''#Test Server
-rsync -r --exclude="config" $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
-#ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./poc_setup.sh\'
+rsync -r $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
+ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./poc_setup.sh\'
 
 
 '''
@@ -87,25 +87,6 @@ ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./core_art_setup.sh\''''
           }
         }
 
-      }
-    }
-
-    stage('Apps') {
-      steps {
-        echo 'Copying OPD/ANC/HTS if it was deployed on new architecture'
-        sh '''#Mzuzu Macro
-#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/OPD" ] && cp /var/www/Apps_Backup/BHT-Core/apps/OPD /var/www/html/BHT-Core/apps || echo "Directory does not exist\'
-#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/HTS" ] && cp /var/www/Apps_Backup/BHT-Core/apps/HTS /var/www/html/BHT-Core/apps || echo "Directory does not exist\'
-#ssh linserver@10.40.30.3 \'[ -d "/var/www/Apps_Backup/BHT-Core/apps/ANC" ] && cp /var/www/Apps_Backup/BHT-Core/apps/ANC /var/www/html/BHT-Core/apps || echo "Directory does not exist\''''
-      }
-    }
-
-    stage('Lading Metadata') {
-      steps {
-        echo 'Loading metadata'
-        sh '''#Mzuzu Macro
-#ssh linserver@10.40.30.3 \'cd /var/www/BHT-EMR-API && mysql -uroot -proot macro_mzuzu_openmrs < db/sql/bart2_views_schema_additions.sql\'
-'''
       }
     }
 
