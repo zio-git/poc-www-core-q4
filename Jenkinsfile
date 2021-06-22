@@ -20,8 +20,9 @@ pipeline {
             echo 'Fetching Tags'
             sh 'cd $WORKSPACE/BHT-EMR-API && git fetch --tags -f'
             echo 'Checking out to Latest Tag'
-            sh 'cd $WORKSPACE/BHT-EMR-API && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
-            sh 'cd $WORKSPACE/BHT-EMR-API && git describe > HEAD'
+            sh '''#cd $WORKSPACE/BHT-EMR-API && git checkout v4.10.44
+#$(git describe --tags `git rev-list --tags --max-count=1`)'''
+            sh '#cd $WORKSPACE/BHT-EMR-API && git describe > HEAD'
           }
         }
 
