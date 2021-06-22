@@ -38,7 +38,7 @@ pipeline {
             sh 'cd $WORKSPACE/BHT-Core && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
             sh 'cd $WORKSPACE/BHT-Core && git describe $(git describe --tags `git rev-list --tags --max-count=1`)'
             echo 'Checking/Creating apps folder'
-            sh '[ -d "BHT-Core/apps" ] && echo "apps already created." || mkdir apps'
+            sh '[ -d "$WORKSPACE/BHT-Core/apps" ] && echo "apps already created." || mkdir apps'
             echo 'Giving access rights to apps'
             sh 'cd $WORKSPACE/BHT-Core && chmod 777 apps'
           }
