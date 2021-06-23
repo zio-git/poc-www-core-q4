@@ -12,6 +12,8 @@ req = urllib.request.Request(url)
 r = urllib.request.urlopen(req).read()
 xi_api = json.loads(r.decode('utf-8'))
 
+all_sites_in_cluster = xi_api[0]['fields']['site']
+
 for site_id in all_sites_in_cluster:
     site_endpoint = "http://10.44.0.52/sites/api/v1/get_single_site/" + str(site_id)
     site_req = urllib.request.Request(site_endpoint)
