@@ -69,7 +69,7 @@ pipeline {
             echo 'shipping & Configuring API'
             sh '''#Test Server
 rsync -r $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
-ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./poc_setup.sh\'
+ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./api_setup.sh\'
 
 
 '''
