@@ -36,8 +36,7 @@ pipeline {
             echo 'Fetching New Tags'
             sh 'cd $WORKSPACE/BHT-Core && git fetch --tags -f'
             echo 'Checking out to latest tag'
-            sh 'cd $WORKSPACE/BHT-Core && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
-            sh 'cd $WORKSPACE/BHT-Core && git describe $(git describe --tags `git rev-list --tags --max-count=1`)'
+            sh '#cd $WORKSPACE/BHT-Core && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
             echo 'creating apps folder in Core'
             sh '[ -d "$WORKSPACE/BHT-Core/apps" ] && echo "apps already exists." || cd $WORKSPACE/BHT-Core && mkdir apps'
             echo 'giving access rights to apps folder'
@@ -58,8 +57,8 @@ pipeline {
         echo 'Fetching new tags'
         sh 'cd $WORKSPACE/BHT-Core/apps/ART && git fetch --tags -f'
         echo 'Checking out to latest tag'
-        sh 'cd $WORKSPACE/BHT-Core/apps/ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
-        sh 'cd $WORKSPACE/BHT-Core/apps/ART && git describe > HEAD'
+        sh '#cd $WORKSPACE/BHT-Core/apps/ART && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)'
+        sh '#cd $WORKSPACE/BHT-Core/apps/ART && git describe > HEAD'
       }
     }
 
@@ -81,9 +80,14 @@ ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./poc_setup.sh\'
           steps {
             echo 'Shipping & configuring Core & ART'
             sh '''#Test Server
-rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www
-rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/BHT-Core/apps
-ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./core_art_setup.sh\''''
+ssh egpaf@10.8.0.194 \'[ -d "var/www/BHT-Core" ] && rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www || [ -d "var/www/html/BHT-Core" ] && rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www/html\'
+ssh egpaf@10.8.0.194 \'[ -d "var/www/BHT-Core/apps/ART" ] && rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/BHT-Core/apps || [ -d "var/www/html/BHT-Core/apps/ART" ] && rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/html/BHT-Core/apps\'
+ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./core_art_setup.sh\'
+
+
+#rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www
+#rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/BHT-Core/apps
+#ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./core_art_setup.sh\''''
           }
         }
 
