@@ -71,7 +71,7 @@ pipeline {
 #rsync -r $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
 #ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./api_setup.sh\'
 pwd
-python3 api_shipping.py
+python3 api_shippingx.py
 
 '''
           }
@@ -90,8 +90,8 @@ python3 api_shipping.py
 #rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/BHT-Core/apps
 #ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./core_art_setup.sh\'
 pwd
-python3 core_shipping.py
-python3 art_shipping.py'''
+python3 core_shippingx.py
+python3 art_shippingx.py'''
           }
         }
 
