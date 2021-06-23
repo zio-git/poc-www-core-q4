@@ -80,8 +80,8 @@ pipeline {
           steps {
             echo 'Shipping & configuring Core & ART'
             sh '''#Test Server
-ssh egpaf@10.8.0.194 \'[ -d "/var/www/BHT-Core" ] && rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www || [ -d "/var/www/html/BHT-Core" ] && rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www/html\'
-ssh egpaf@10.8.0.194 \'[ -d "/var/www/BHT-Core/apps/ART" ] && rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/BHT-Core/apps || [ -d "/var/www/html/BHT-Core/apps/ART" ] && rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/html/BHT-Core/apps\'
+ssh egpaf@10.8.0.194 "[ -d \'/var/www/BHT-Core\' ] && rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www || [ -d \'/var/www/html/BHT-Core\' ] && rsync -r $WORKSPACE/BHT-Core egpaf@10.8.0.194:/var/www/html"
+ssh egpaf@10.8.0.194 "[ -d \'/var/www/BHT-Core/apps/ART\' ] && rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/BHT-Core/apps || [ -d \'/var/www/html/BHT-Core/apps/ART\' ] && rsync -r $WORKSPACE/BHT-Core/apps/ART egpaf@10.8.0.194:/var/www/html/BHT-Core/apps"
 ssh egpaf@10.8.0.194 \'cd /var/www/BHT-Core && ./core_art_setup.sh\'
 
 
