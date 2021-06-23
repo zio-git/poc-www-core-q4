@@ -5,7 +5,7 @@ import platform
 import subprocess
 
 # define URL to capture data
-url = 'http://10.44.0.52/modules/api/?v=cluster&pipeline_name=Xi-Build-Initiator'
+url = 'http://10.44.0.52/sites/api/v1/get_single_cluster/3'
 req = urllib.request.Request(url)
 
 # parsing response
