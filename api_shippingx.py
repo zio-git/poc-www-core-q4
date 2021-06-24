@@ -19,6 +19,10 @@ for site_id in cluster['site']:
     param = '-n' if platform.system().lower()=='windows' else '-c'
     if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
         
+        # backing up application folder [API]
+        backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API/log && rm development.log && cp /var/www/BHT-EMR-API /var/www/BHT-EMR-API-DEV-BK'"
+        os.system(backup_script)
+        
         # ship data to remote site
         push_api = "rsync " + "-r $WORKSPACE/BHT-EMR-API " + site['username'] + "@" + site['ip_address'] + ":/var/www"
         os.system(push_api)
