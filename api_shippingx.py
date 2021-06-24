@@ -20,7 +20,7 @@ for site_id in cluster['site']:
     if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
         
         # backing up application folder [API]
-        backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API/log && rm -rf development.log && scp -Cr /var/www/BHT-EMR-API /var/www/BHT-EMR-API-DEV-BK'"
+        backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API && ./backup.sh'"
         os.system(backup_script)
         
         # ship data to remote site
