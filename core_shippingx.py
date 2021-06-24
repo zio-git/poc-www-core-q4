@@ -26,5 +26,5 @@ for site_id in cluster['site']:
     if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
         
         #* ship data to remote site
-        push_core = "rsync " + "-r ssh $WORKSPACE/BHT-Core " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-Core"
+        push_core = "rsync " + "-r $WORKSPACE/BHT-Core " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-Core"
         os.system(push_core)
