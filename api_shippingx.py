@@ -24,7 +24,7 @@ for site_id in cluster['site']:
         os.system(push_api)
         
         # run setup script
-        run_api_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API && ./api_setup.sh"
+        run_api_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API && ./api_setup.sh'"
         os.system(run_api_script)
 
 
