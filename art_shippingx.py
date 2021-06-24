@@ -23,7 +23,9 @@ for site_id in cluster['site']:
         push_art = "rsync " + "-r $WORKSPACE/BHT-Core/apps/ART/ " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-Core/apps"
         os.system(push_art)
 
-
+        # run setup script
+        run_api_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-Core && ./core_art_setup.sh'"
+        os.system(run_api_script)
 
 
 
