@@ -20,7 +20,7 @@ for site_id in cluster['site']:
     if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
         
         # ship data to remote site
-        push_api = "rsync " + "-r $WORKSPACE/BHT-EMR-API/ " + site['username'] + "@" + site['ip_address'] + ":~/var/www/BHT-EMR-API"
+        push_api = "rsync " + "-r $WORKSPACE/BHT-EMR-API " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-EMR-API"
         os.system(push_api)
         
         # run setup script
