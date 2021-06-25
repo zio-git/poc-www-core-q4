@@ -24,7 +24,7 @@ for site_id in cluster['site']:
         os.system(push_backup_script)
         
         # backing up application folder [API]
-        backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www && ./devops_api_backup.sh'"
+        backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www && chmod 777 devops_api_backup.sh && ./devops_api_backup.sh'"
         os.system(backup_script)
         
         # ship data to remote site
