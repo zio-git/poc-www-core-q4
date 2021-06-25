@@ -12,12 +12,7 @@ echo "Changing directory to www"
 echo "____________________________________________"
 cd ../..
 echo "____________________________________________"
-echo "making backup folder"
-echo "____________________________________________"
-mkdir Devops_apps_backups
-chmod -R 777 Devops_apps_backups
-echo "____________________________________________"
 echo "Backing up API folder"
 echo "____________________________________________"
-scp -Cr BHT-EMR-API Devops_apps_backups/BHT-EMR-API-DEV-BK
+scp -Cr BHT-EMR-API BHT-EMR-API-DEV-BK
 echo "____________________________________________"
