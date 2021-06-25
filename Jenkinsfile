@@ -1,9 +1,5 @@
 pipeline {
   agent any
-  
-   environment {
-        REQUEST_ID = 'true'
-    }
   stages {
     stage('Initializing') {
       steps {
@@ -102,5 +98,8 @@ python3 art_shippingx.py'''
       }
     }
 
+  }
+  environment {
+    REQUEST_ID = 'true'
   }
 }
