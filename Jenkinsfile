@@ -101,5 +101,6 @@ python3 art_shippingx.py'''
   }
   environment {
     REQUEST_ID = 'true'
+    CLUSTER_ID = '12345'
   }
 }
