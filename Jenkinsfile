@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  
+   environment {
+        REQUEST_ID = 'true'
+    }
   stages {
     stage('Initializing') {
       steps {
