@@ -5,6 +5,7 @@ pipeline {
       steps {
         echo 'Initializing ...'
         sh 'echo "Working from $WORKSPACE"'
+        sh 'echo "Your build number is: \\${BUILD_NUMBER} -> ${BUILD_NUMBER}"'
       }
     }
 
