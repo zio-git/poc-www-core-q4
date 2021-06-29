@@ -15,6 +15,7 @@ cluster = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_cluster/3')
 for site_id in cluster['site']:
     site = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_site/' + str(site_id))
 
+    # functionality for ping re-tries
     count = 0
 
     while(count < 3):
