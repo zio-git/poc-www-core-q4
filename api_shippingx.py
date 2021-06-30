@@ -60,13 +60,13 @@ for site_id in cluster['site']:
 
             # send sms alert
             for recipient in recipients:
-                msg = "Hi there,\n\nDeployment of API for " + site['name'] + " completed succesfully.\n\nThanks!\nDevOps Team."
+                msg = "Hi there,\n\nDeployment of API to V4.11.0 for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
                     "tenant_id": "12345",
                     "recipient": recipient,
                     "message": msg,
                     "message_category": "signup",
-                    "brand_name": "DevOps",    
+                    "brand_name": "EGPAF-HIS",    
                     "type": "internal"
                 }
                 alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
@@ -81,13 +81,13 @@ for site_id in cluster['site']:
             # make sure we are sending the alert at the last pint attempt
             if count == 3:
                 for recipient in recipients:
-                    msg = "Hi there,\n\nDeployment of API for " + site['name'] + " failed to complete after several connection attempts.\n\nThanks!\nDevOps Team."
+                    msg = "Hi there,\n\nDeployment of API to V4.11.0 for " + site['name'] + " failed to complete after several connection attempts.\n\nThanks!\nEGPAF HIS."
                     params = {
                         "tenant_id": "12345",
                         "recipient": recipient,
                         "message": msg,
                         "message_category": "signup",
-                        "brand_name": "DevOps",    
+                        "brand_name": "EGPAF-HIS",    
                         "type": "internal"
                     }
                     alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
