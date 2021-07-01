@@ -63,7 +63,7 @@ for site_id in cluster['site']:
             
             msg = "{0.stdout}"
             
-            version = msg.format(result)
+            version = msg.format(result).strip()
             
             api_version = "v4.11.0"
             
