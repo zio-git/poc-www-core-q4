@@ -3,6 +3,7 @@ import json
 import platform
 import subprocess
 import os
+from fabric import Connection
 
 """ 
 * get data from Xi
@@ -57,14 +58,27 @@ for site_id in cluster['site']:
             # run setup script
             run_api_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API && ./api_setup.sh'"
             os.system(run_api_script)
+            
+            result = Connection("" + site['username'] + "@" + site['ip_address'] + "").run('cd /var/www/BHT-EMR-API && git describe', hide=True)
+            
+            msg = "{0.stdout}"
+            
+            version = msg.format(result)
+            
+            api_version = "v4.11.0"
+            
+            if api_version == version"
+                msgx = "Hi there,\n\nDeployment of API to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
+            else:
+                msgx = "Hi there,\nSomething went wrong while checking out to the latest API version. Current version is " + version + " for " + site['name'] + ".\nThanks!\nEGPAF HIS."
 
             # send sms alert
             for recipient in recipients:
-                msg = "Hi there,\n\nDeployment of API to V4.11.0 for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
+                msg = "Hi there,\n\nDeployment of API to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
                     "tenant_id": "12345",
                     "recipient": recipient,
-                    "message": msg,
+                    "message": msgx,
                     "message_category": "signup",
                     "brand_name": "EGPAF-HIS",    
                     "type": "internal"
