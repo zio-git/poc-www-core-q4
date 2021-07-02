@@ -46,8 +46,8 @@ for site_id in cluster['site']:
             os.system(run_api_script)
 
 	    result = Connection("" + site['username'] + "@" + site['ip_address'] + "").run('cd /var/www/BHT-Core/apps/ART && git describe', hide=True)
-		
-            msg = "{0.stdout}"
+	    
+	    msg = "{0.stdout}"
             
             version = msg.format(result).strip()
             
