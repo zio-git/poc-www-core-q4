@@ -3,6 +3,7 @@ import json
 import platform
 import subprocess
 import os
+from fabric import Connection
 
 def get_xi_data(url):
     response = requests.get(url)
@@ -44,9 +45,22 @@ for site_id in cluster['site']:
             run_api_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-Core && ./core_art_setup.sh'"
             os.system(run_api_script)
 
+	    result = Connection("" + site['username'] + "@" + site['ip_address'] + "").run('cd /var/www/BHT-Core/apps/ART && git describe', hide=True)
+            
+            msg = "{0.stdout}"
+            
+            version = msg.format(result).strip()
+            
+            api_version = "v4.12.0"
+            
+            if api_version == version:
+                msgx = "Hi there,\n\nDeployment of ART to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
+            else:
+                msgx = "Hi there,\n\nSomething went wrong while checking out to the latest ART version. Current version is " + version + " for " + site['name'] + ".\n\nThanks!\nEGPAF HIS."
+
             # send sms alert
             for recipient in recipients:
-                msg = "Hi there,\n\nDeployment of ART to v4.12.0 for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
+ 	        msg = "Hi there,\n\nDeployment of ART to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
                     "tenant_id": "12345",
                     "recipient": recipient,
@@ -74,7 +88,3 @@ for site_id in cluster['site']:
                         "type": "internal"
                     }
                     alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
-
-
-
-
