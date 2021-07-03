@@ -25,10 +25,10 @@ def alert(url, params):
     r = requests.post(url, json=params, headers=headers)
     return r
 
-recipients = ["+265998006237", "+265999971593", "+265999611280", "+265991450316", "+265995246144", "+265995316633", "+265999453942", "+265995971632", "+265995532195", "+265998276712", "+265992182669", "+265888771809", "+265994135772", "+265992600883", "+265994427700", "+265999679975"]
+recipients = ["+265998006237", "+265999611280", "+265991450316", "+265995246144", "+265992600883", "+265994427700", "+265999679975"]
 
 #* Get cluster details
-cluster = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_cluster/5')
+cluster = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_cluster/6')
 
 for site_id in cluster['site']:
     site = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_site/' + str(site_id))
@@ -43,12 +43,12 @@ for site_id in cluster['site']:
         if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
             
             # shipping backup script
-            push_backup_script = "rsync " + "-r $WORKSPACE/devops_core_backup.sh " + site['username'] + "@" + site['ip_address'] + ":/var/www"
-            os.system(push_backup_script)
+            #push_backup_script = "rsync " + "-r $WORKSPACE/devops_core_backup.sh " + site['username'] + "@" + site['ip_address'] + ":/var/www"
+            #os.system(push_backup_script)
             
             # backing up application folder [Core & ART]
-            backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www && chmod 777 devops_core_backup.sh && ./devops_core_backup.sh'"
-            os.system(backup_script)
+            #backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www && chmod 777 devops_core_backup.sh && ./devops_core_backup.sh'"
+            #os.system(backup_script)
             
             #* ship data to remote site
             push_core = "rsync " + "-r $WORKSPACE/BHT-Core " + site['username'] + "@" + site['ip_address'] + ":/var/www"
