@@ -69,10 +69,7 @@ echo "Your build number is: \\${REQUEST_ID} -> ${REQUEST_ID}"'''
         stage('API') {
           steps {
             echo 'shipping & Configuring API'
-            sh '''#Test Server
-#rsync -r $WORKSPACE/BHT-EMR-API egpaf@10.8.0.194:/var/www
-#ssh egpaf@10.8.0.194 \'cd /var/www/BHT-EMR-API && ./api_setup.sh\'
-python3 api_shippingx.py
+            sh '''cd $WORKSPACE/New-API-Pipeline/BHT-EMR-API  && python3 api_shippingx.py && ./api_setup.sh
 
 '''
           }
