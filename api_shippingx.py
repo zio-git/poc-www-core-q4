@@ -76,14 +76,11 @@ for site_id in cluster['site']:
             for recipient in recipients:
                 msg = "Hi there,\n\nDeployment of API to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
-                    "tenant_id": "12345",
+                    "api_key": os.getenv('api_key'),
                     "recipient": recipient,
-                    "message": msgx,
-                    "message_category": "signup",
-                    "brand_name": "EGPAF-HIS",    
-                    "type": "internal"
+                    "message": msgx
                 }
-                alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
+                alert("http://sms-api.hismalawi.org/v1/sms/send", params)
 
             # close the while loop
             count = 3
