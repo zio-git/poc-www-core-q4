@@ -71,7 +71,7 @@ for site_id in cluster['site']:
             for recipient in recipients:
                 msg = "Hi there,\n\nDeployment of ART to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
-                    "api_key": os.getenv('api_key'),
+                    "api_key": os.getenv('API_KEY'),
                     "recipient": recipient,
                     "message": msgx
                 }
@@ -86,7 +86,7 @@ for site_id in cluster['site']:
                 for recipient in recipients:
                     msg = "Hi there,\n\nDeployment of ART to v4.12.0 for " + site['name'] + " failed to complete after several connection attempts.\n\nThanks!\nEGPAF HIS."
                     params = {
-                        "api_key": os.getenv('api_key'),
+                        "api_key": os.getenv('API_KEY'),
                         "recipient": recipient,
                         "message": msg
                     }
