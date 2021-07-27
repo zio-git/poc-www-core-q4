@@ -4,6 +4,8 @@ import platform
 import subprocess
 import os
 from fabric import Connection
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def get_xi_data(url):
@@ -90,11 +92,8 @@ for site_id in cluster['site']:
                     msg = "Hi there,\n\nDeployment of ART to v4.12.0 for " + site[
                         'name'] + " failed to complete after several connection attempts.\n\nThanks!\nEGPAF HIS."
                     params = {
-                        "tenant_id": "12345",
+                        "api_key": os.getenv('api_key'),
                         "recipient": recipient,
-                        "message": msg,
-                        "message_category": "signup",
-                        "brand_name": "EGPAF-HIS",
-                        "type": "internal"
+                        "message": msgx
                     }
-                    alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
+                    alert("http://sms-api.hismalawi.org/v1/sms/send", params)

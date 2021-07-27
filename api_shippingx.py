@@ -4,6 +4,8 @@ import platform
 import subprocess
 import os
 from fabric import Connection
+from dotenv import load_dotenv
+load_dotenv()
 
 """ 
 * get data from Xi
