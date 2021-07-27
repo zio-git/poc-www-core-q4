@@ -45,8 +45,7 @@ for site_id in cluster['site']:
         if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
 
             # ship data to remote site
-            push_art = "rsync " + "-r $WORKSPACE/BHT-Core/apps/ART/ " + site['username'] + "@" + site[
-                'ip_address'] + ":/var/www/BHT-Core/apps"
+            push_art = "rsync " + "-r $WORKSPACE/BHT-Core/apps/ART/ " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-Core/apps"
             os.system(push_art)
 
             # run setup script
@@ -70,17 +69,13 @@ for site_id in cluster['site']:
 
             # send sms alert
             for recipient in recipients:
-                msg = "Hi there,\n\nDeployment of ART to " + version + " for " + site[
-                    'name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
+                msg = "Hi there,\n\nDeployment of ART to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
-                    "tenant_id": "12345",
+                    "api_key": os.getenv('api_key'),
                     "recipient": recipient,
-                    "message": msg,
-                    "message_category": "signup",
-                    "brand_name": "EGPAF-HIS",
-                    "type": "internal"
+                    "message": msgx
                 }
-                alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
+                alert("http://sms-api.hismalawi.org/v1/sms/send", params)
 
             count = 3
         else:
@@ -89,11 +84,10 @@ for site_id in cluster['site']:
             # make sure we are sending the alert at the last pint attempt
             if count == 3:
                 for recipient in recipients:
-                    msg = "Hi there,\n\nDeployment of ART to v4.12.0 for " + site[
-                        'name'] + " failed to complete after several connection attempts.\n\nThanks!\nEGPAF HIS."
+                    msg = "Hi there,\n\nDeployment of ART to v4.12.0 for " + site['name'] + " failed to complete after several connection attempts.\n\nThanks!\nEGPAF HIS."
                     params = {
                         "api_key": os.getenv('api_key'),
                         "recipient": recipient,
-                        "message": msgx
+                        "message": msg
                     }
                     alert("http://sms-api.hismalawi.org/v1/sms/send", params)

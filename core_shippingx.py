@@ -58,14 +58,11 @@ for site_id in cluster['site']:
             for recipient in recipients:
                 msg = "Hi there,\n\nDeployment of CORE to v4.8.0 for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
-                    "tenant_id": "12345",
+                    "api_key": os.getenv('api_key'),
                     "recipient": recipient,
-                    "message": msg,
-                    "message_category": "signup",
-                    "brand_name": "EGPAF-HIS",    
-                    "type": "internal"
+                    "message": msg
                 }
-                alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
+                alert("http://sms-api.hismalawi.org/v1/sms/send", params)
 
             count = 3
 
@@ -78,11 +75,8 @@ for site_id in cluster['site']:
                 for recipient in recipients:
                     msg = "Hi there,\n\nDeployment of CORE to v4.8.0 for " + site['name'] + " failed to complete after several connection attempts.\n\nThanks!\nEGPAF HIS."
                     params = {
-                        "tenant_id": "12345",
+                        "api_key": os.getenv('api_key'),
                         "recipient": recipient,
-                        "message": msg,
-                        "message_category": "signup",
-                        "brand_name": "EGPAF-HIS",    
-                        "type": "internal"
+                        "message": msg
                     }
-                    alert("http://ec2-52-14-138-182.us-east-2.compute.amazonaws.com:56733/v1/sms/send", params)
+                    alert("http://sms-api.hismalawi.org/v1/sms/send", params)
