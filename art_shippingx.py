@@ -58,7 +58,7 @@ for site_id in cluster['site']:
 
             version = msg.format(result).strip()
 
-            api_version = "v4.12.0"
+            api_version = "v4.12.1"
 
             if api_version == version:
                 msgx = "Hi there,\n\nDeployment of ART to " + version + " for " + site[
