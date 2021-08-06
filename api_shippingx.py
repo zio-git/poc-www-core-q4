@@ -67,7 +67,7 @@ for site_id in cluster['site']:
             
             version = msg.format(result).strip()
             
-            api_version = "v4.11.9"
+            api_version = "v4.11.10"
             
             if api_version == version:
                 msgx = "Hi there,\n\nDeployment of API to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
